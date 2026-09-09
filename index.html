@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Jan Anthony Corral, a GoHighLevel automation and operations specialist.">
+  <title>Jan Anthony Corral — GHL Automation & Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f3ef;
+      --paper-2: #ebeae5;
+      --ink: #172033;
+      --muted: #697386;
+      --line: #d4d8df;
+      --blue: #2558d9;
+      --blue-dark: #163a93;
+      --blue-soft: #dfe8ff;
+      --white: #fbfbf9;
+      --navy: #101a2d;
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Instrument Sans", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid #7fa2ff; outline-offset: 4px; }
+
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .nav-shell {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244, 243, 239, .9);
+      border-bottom: 1px solid rgba(23, 32, 51, .12);
+      backdrop-filter: blur(14px);
+    }
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .wordmark { font-weight: 700; letter-spacing: -.02em; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: .94rem; }
+    .nav-links a { color: #475166; }
+    .nav-links a:hover { color: var(--blue); }
+
+    .hero {
+      min-height: 72vh;
+      padding: 112px 0 86px;
+      display: grid;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--blue);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 940px;
+      margin-bottom: 28px;
+      font-size: clamp(3.25rem, 8vw, 7.35rem);
+      line-height: .93;
+      letter-spacing: -.065em;
+      font-weight: 650;
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin-bottom: 38px;
+      color: #4f596d;
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      padding: 11px 19px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.secondary { background: transparent; color: var(--ink); }
+    .button.secondary:hover { background: var(--white); }
+
+    section { padding: 112px 0; scroll-margin-top: 72px; }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .75fr) minmax(300px, 1fr);
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 58px;
+    }
+    .section-number { color: var(--blue); font-size: .82rem; font-weight: 700; letter-spacing: .13em; }
+    h2 { margin-bottom: 0; font-size: clamp(2.4rem, 5vw, 4.7rem); line-height: 1; letter-spacing: -.05em; }
+    .section-intro { margin: 0; color: var(--muted); max-width: 610px; }
+
+    .projects { display: grid; gap: 72px; }
+    .project {
+      border-top: 1px solid var(--ink);
+      padding-top: 22px;
+    }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .media-frame {
+      overflow: hidden;
+      background: #dde1e9;
+      border: 1px solid #c9ced8;
+      border-radius: var(--radius);
+      box-shadow: 0 22px 60px rgba(27, 40, 68, .11);
+    }
+    .browser-bar {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 15px;
+      background: #e8eaf0;
+      border-bottom: 1px solid #c9ced8;
+    }
+    .browser-bar span { width: 9px; height: 9px; border-radius: 50%; background: #aeb5c2; }
+    .media-frame img { width: 100%; background: white; }
+    .media-frame video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #0c1423; }
+    .project-copy {
+      display: grid;
+      grid-template-columns: minmax(260px, .85fr) minmax(320px, 1.15fr);
+      gap: 64px;
+      padding: 30px 0 0;
+    }
+    .project h3 { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.08; letter-spacing: -.035em; }
+    .project-summary { color: #4f596d; }
+    .project-controls { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+    .text-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 0 6px;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: var(--blue-dark);
+      font-weight: 650;
+      cursor: pointer;
+    }
+    .text-button .arrow { transition: transform .25s ease; }
+    .text-button[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+    .project-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      margin-top: 0;
+      opacity: 0;
+      transition: grid-template-rows .42s ease, opacity .25s ease, margin-top .42s ease;
+    }
+    .project-panel.open { grid-template-rows: 1fr; margin-top: 34px; opacity: 1; }
+    .panel-inner { overflow: hidden; }
+    .panel-content {
+      padding: 38px;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+    }
+    .panel-content h4 { margin: 0 0 10px; font-size: .82rem; color: var(--blue); letter-spacing: .1em; text-transform: uppercase; }
+    .panel-content p, .panel-content li { color: #586174; font-size: .96rem; }
+    .panel-content ul { margin: 0; padding-left: 1.1em; }
+
+    .work-list { border-top: 1px solid var(--ink); }
+    .work-row {
+      display: grid;
+      grid-template-columns: minmax(240px, .7fr) 1.3fr;
+      gap: 60px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .work-row h3 { margin: 0; font-size: 1.25rem; }
+    .work-row p { margin: 0; color: var(--muted); }
+
+    .about { background: var(--navy); color: #f4f6fa; }
+    .about .section-number { color: #85a9ff; }
+    .about .section-intro { color: #abb5c8; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; }
+    .about-copy { font-size: clamp(1.3rem, 2.5vw, 2rem); line-height: 1.35; letter-spacing: -.02em; }
+    .about-detail { color: #abb5c8; }
+
+    .contact { text-align: center; }
+    .contact h2 { max-width: 850px; margin: 0 auto 25px; }
+    .contact p { max-width: 620px; margin: 0 auto 34px; color: var(--muted); }
+    .contact-placeholder { border-style: dashed; cursor: default; }
+    footer {
+      padding: 24px 0 38px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+      .nav-links a:not(:last-child) { display: none; }
+      .hero { min-height: auto; padding: 88px 0 68px; }
+      h1 { font-size: clamp(3rem, 15vw, 4.7rem); }
+      section { padding: 82px 0; }
+      .section-head, .project-copy, .work-row, .about-grid { grid-template-columns: 1fr; gap: 22px; }
+      .section-head { margin-bottom: 40px; }
+      .projects { gap: 58px; }
+      .panel-content { padding: 25px; grid-template-columns: 1fr; gap: 22px; }
+      .project-meta { font-size: .8rem; }
+      footer .wrap { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-shell">
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="wordmark" href="#top">Jan Anthony Corral</a>
+      <div class="nav-links">
+        <a href="#work">Selected Work</a>
+        <a href="#experience">What I Do</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">GoHighLevel automation & operations</p>
+        <h1>I build the systems behind better customer journeys.</h1>
+        <p class="hero-copy">I work on CRM automation, AI-assisted appointment systems, email follow-ups, and websites for service businesses using GoHighLevel and practical AI tools.</p>
+        <div class="actions">
+          <a class="button" href="#work">View selected work ↓</a>
+          <a class="button secondary" href="#contact">Contact me</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="section-number">01 / SELECTED WORK</div>
+            <h2>Built work,<br>shown clearly.</h2>
+          </div>
+          <p class="section-intro">A focused selection of systems and web work I have personally configured, improved, or implemented.</p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-meta"><span>Automation system</span><span>GoHighLevel</span></div>
+            <div class="media-frame">
+              <img src="assets/ai-appointment-source-tracking-and-reminders.png" alt="Combined overview of an AI appointment source tracking and reminder system in GoHighLevel">
+            </div>
+            <div class="project-copy">
+              <h3>AI Appointment Source Tracking & Reminders</h3>
+              <div>
+                <p class="project-summary">A connected workflow system that identifies whether an AI-booked appointment came from the website widget or social messaging, records the source, and enrolls the contact into a shared reminder sequence.</p>
+                <div class="project-controls">
+                  <button class="text-button project-toggle" aria-expanded="false" aria-controls="workflow-details">
+                    <span class="toggle-label">View breakdown</span><span class="arrow" aria-hidden="true">↓</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="project-panel" id="workflow-details">
+              <div class="panel-inner">
+                <div class="panel-content">
+                  <div><h4>Objective</h4><p>Track which deployed AI agent successfully generated each appointment and keep follow-up consistent across both booking sources.</p></div>
+                  <div><h4>My contribution</h4><ul><li>Configured two source workflows</li><li>Updated a custom booking-source field</li><li>Connected both sources to one reminder workflow</li></ul></div>
+                  <div><h4>How it works</h4><p>Successful booking → source recorded as Website Widget AI or Social DM AI → contact added to the email and internal-notification reminder sequence.</p></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-meta"><span>Website revamp</span><span>Aura Assistant</span></div>
+            <div class="media-frame">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+              <video muted loop playsinline preload="metadata" poster="">
+                <source src="assets/aura-assistant-website-scroll.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="project-copy">
+              <h3>Aura Assistant Website</h3>
+              <div>
+                <p class="project-summary">A customer-facing website for an AI receptionist service. I helped revamp the existing site by improving its structure, presentation, and overall experience.</p>
+                <div class="project-controls">
+                  <button class="text-button project-toggle" aria-expanded="false" aria-controls="aura-details">
+                    <span class="toggle-label">View project details</span><span class="arrow" aria-hidden="true">↓</span>
+                  </button>
+                  <a class="text-button" href="https://auraassistant.com" target="_blank" rel="noopener noreferrer">Visit live website ↗</a>
+                </div>
+              </div>
+            </div>
+            <div class="project-panel" id="aura-details">
+              <div class="panel-inner">
+                <div class="panel-content">
+                  <div><h4>Starting point</h4><p>An existing live website was already in place and needed a clearer, more complete presentation.</p></div>
+                  <div><h4>My contribution</h4><p>I worked on the website revamp, improving page structure, section presentation, and the way the service is communicated across the site.</p></div>
+                  <div><h4>Implementation</h4><p>The work was completed with AI-assisted development as part of my practical workflow. A before-and-after comparison can be added once the earlier website version is recovered.</p></div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-number">02 / WHAT I WORK ON</div><h2>Practical backend work.</h2></div>
+          <p class="section-intro">The actual areas I have worked with—not a list of tools added just to fill space.</p>
+        </div>
+        <div class="work-list">
+          <div class="work-row"><h3>CRM & automation</h3><p>GoHighLevel workflows, pipelines, custom values and fields, contact importing and exporting, reminders, follow-ups, and nurture sequences.</p></div>
+          <div class="work-row"><h3>AI appointment systems</h3><p>AI agents, website chat widgets, social messaging agents, knowledge bases, appointment-booking logic, and AI-generated booking attribution.</p></div>
+          <div class="work-row"><h3>Email & campaign operations</h3><p>Email campaigns, reusable templates, automated customer follow-ups, internal notifications, and lifecycle communication.</p></div>
+          <div class="work-row"><h3>Websites</h3><p>Building and improving service-business websites, expanding references into fuller experiences, and using AI-assisted coding to implement changes.</p></div>
+          <div class="work-row"><h3>Content operations</h3><p>Creating AI-assisted static content and scheduling social posts through GoHighLevel Social Planner.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="section-number">03 / ABOUT</div><h2>Hands-on and systems-focused.</h2></div>
+          <p class="section-intro">Based in the Philippines and working remotely with service-business systems.</p>
+        </div>
+        <div class="about-grid">
+          <p class="about-copy">I focus on understanding how a process should work, then building and organizing the systems that support it.</p>
+          <div class="about-detail">
+            <p>My experience centers on GoHighLevel operations, CRM automation, AI-assisted customer communication, email follow-up, and website implementation.</p>
+            <p>I use AI heavily for research, troubleshooting, and development while keeping the business goal and actual system logic at the center of the work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="section-number">04 / CONTACT</div>
+        <h2>Need help improving your GoHighLevel systems?</h2>
+        <p>I’m open to remote opportunities where I can support automation, CRM operations, AI-agent systems, email follow-up, or website improvements.</p>
+        <!-- Replace the placeholder below with your real email before publishing. -->
+        <span class="button secondary contact-placeholder">Add your email address</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><span>© 2026 Jan Anthony Corral</span><span>Based in the Philippines · Available remotely</span></div>
+  </footer>
+
+  <script>
+    const toggles = document.querySelectorAll('.project-toggle');
+
+    function closeProject(button) {
+      const panel = document.getElementById(button.getAttribute('aria-controls'));
+      button.setAttribute('aria-expanded', 'false');
+      panel.classList.remove('open');
+      button.querySelector('.toggle-label').textContent = button.dataset.closedLabel;
+    }
+
+    toggles.forEach((button) => {
+      button.dataset.closedLabel = button.querySelector('.toggle-label').textContent;
+      button.addEventListener('click', () => {
+        const wasOpen = button.getAttribute('aria-expanded') === 'true';
+        toggles.forEach(closeProject);
+        if (!wasOpen) {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          button.setAttribute('aria-expanded', 'true');
+          panel.classList.add('open');
+          button.querySelector('.toggle-label').textContent = 'Close details';
+        }
+      });
+    });
+
+    const video = document.querySelector('video');
+    if (video) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      }, { threshold: 0.4 });
+      observer.observe(video);
+    }
+  </script>
+</body>
+</html>
