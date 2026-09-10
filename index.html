@@ -247,6 +247,22 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
     }
+
+    .lifecycle-caption {font-size:.94rem;color:var(--muted)}
+    .lifecycle-breakdown {padding:38px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius)}
+    .lifecycle-intro h4 {font-size:1.8rem;letter-spacing:-.035em;line-height:1.2;margin:14px 0}
+    .lifecycle-intro p,.flow-figure p {max-width:780px;color:var(--muted)}
+    .flow-index {display:flex;flex-wrap:wrap;justify-content:flex-start;min-height:0;gap:10px;padding:10px 0 30px}
+    .flow-index a {padding:8px 13px;border:1px solid var(--line);border-radius:999px;font-size:.85rem}
+    .flow-index a:hover {background:var(--blue-soft);border-color:var(--blue)}
+    .flow-figure {margin:0;padding:30px 0 36px;border-top:1px solid var(--line);scroll-margin-top:95px}
+    .flow-figure h4 {font-size:1.3rem;margin:0 0 12px;letter-spacing:-.02em}
+    .flow-figure figcaption {margin-bottom:22px}
+    .flow-figure .text-button {font-size:.9rem}
+    .flow-image {display:block;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#f7f8fa}
+    .flow-image img {display:block;width:100%;height:auto;min-height:90px}
+    .lifecycle-note {font-size:.83rem;color:var(--muted);margin:0;border-top:1px solid var(--line);padding-top:24px}
+    @media(max-width:760px){.lifecycle-breakdown{padding:20px}.flow-index{gap:8px}.flow-figure{padding:24px 0}.lifecycle-intro h4{font-size:1.5rem}}
   </style>
 </head>
 <body>
@@ -308,6 +324,38 @@
                   <div><h4>Objective</h4><p>Track which deployed AI agent successfully generated each appointment and keep follow-up consistent across both booking sources.</p></div>
                   <div><h4>My contribution</h4><ul><li>Configured two source workflows</li><li>Updated a custom booking-source field</li><li>Connected both sources to one reminder workflow</li></ul></div>
                   <div><h4>How it works</h4><p>Successful booking → source recorded as Website Widget AI or Social DM AI → contact added to the email and internal-notification reminder sequence.</p></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" id="demo-lifecycle">
+            <div class="project-meta"><span>Demo lifecycle automation</span><span>Aura Assistant · GoHighLevel</span></div>
+            <div class="media-frame">
+              <img src="assets/aura-lifecycle-showcase.webp" width="1920" height="1080" loading="lazy" alt="Five paths in Aura's demo appointment lifecycle: nurture, confirmed booking, attendance, no-show recovery and cancellation recovery">
+            </div>
+            <div class="project-copy">
+              <h3>Aura Demo Appointment Lifecycle</h3>
+              <div>
+                <p class="project-summary">One GoHighLevel workflow with five triggers, covering the journey from demo interest to booking, attendance and recovery. Tracked email links, contact tags and opportunity updates keep the follow-up tied to each contact’s appointment status.</p>
+                <p class="lifecycle-caption">Nurture → booking → attendance, with separate recovery paths for missed and cancelled demos.</p>
+                <div class="project-controls">
+                  <button class="text-button project-toggle" aria-expanded="false" aria-controls="lifecycle-details"><span class="toggle-label">Explore the workflow</span><span class="arrow" aria-hidden="true">↓</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="project-panel" id="lifecycle-details" inert>
+              <div class="panel-inner">
+                <div class="lifecycle-breakdown">
+                  <div class="lifecycle-intro"><span class="section-number">WORKFLOW BREAKDOWN</span><h4>From the full picture to each trigger.</h4><p>Start with the complete map, then follow the five paths below. Open any image at full size to inspect its action labels.</p></div>
+                  <nav class="flow-index" aria-label="Workflow breakdown"><a href="#flow-full">Full workflow</a><a href="#flow-nurture">01 / Demo nurture</a><a href="#flow-confirmed">02 / Booking confirmed</a><a href="#flow-showed">03 / Demo attended</a><a href="#flow-no-show">04 / No-show recovery</a><a href="#flow-cancelled">05 / Cancellation recovery</a></nav>
+                  <figure class="flow-figure" id="flow-full"><figcaption><h4>The complete workflow</h4><p>All five event-driven paths in one view. Each starts from its own trigger; the detailed paths below show their actions and branches.</p><a class="text-button" href="assets/aura-lifecycle-full.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-full.png" target="_blank" rel="noopener" aria-label="Open The complete workflow image at full size"><img data-src="assets/aura-lifecycle-full.png" loading="lazy" alt="The complete workflow — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <figure class="flow-figure" id="flow-nurture"><figcaption><h4>01 / Demo nurture</h4><p>Five nurture emails use tracked trigger links to identify booking interest. Clicks can update the booking-pending state and pipeline, while booked-status checks route contacts around the remaining nurture sequence.</p><a class="text-button" href="assets/aura-lifecycle-nurture.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-nurture.png" target="_blank" rel="noopener" aria-label="Open Demo nurture image at full size"><img data-src="assets/aura-lifecycle-nurture.png" loading="lazy" alt="01 / Demo nurture — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <figure class="flow-figure" id="flow-confirmed"><figcaption><h4>02 / Booking confirmed</h4><p>A confirmed demo marks the contact as booked and clears booking pending. The workflow updates, reactivates or creates the opportunity, then sends confirmation and customer and team reminders.</p><a class="text-button" href="assets/aura-lifecycle-confirmed.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-confirmed.png" target="_blank" rel="noopener" aria-label="Open Booking confirmed image at full size"><img data-src="assets/aura-lifecycle-confirmed.png" loading="lazy" alt="02 / Booking confirmed — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <figure class="flow-figure" id="flow-showed"><figcaption><h4>03 / Demo attended</h4><p>Attendance updates the demo state and opportunity. The three opportunity routes join a shared post-demo notification and follow-up email path.</p><a class="text-button" href="assets/aura-lifecycle-showed.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-showed.png" target="_blank" rel="noopener" aria-label="Open Demo attended image at full size"><img data-src="assets/aura-lifecycle-showed.png" loading="lazy" alt="03 / Demo attended — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <figure class="flow-figure" id="flow-no-show"><figcaption><h4>04 / No-show recovery</h4><p>A missed demo clears the old booked state and starts five recovery emails. Rebooking checks stop recovery and clear the no-show state; unrecovered opportunities reach the abandonment route.</p><a class="text-button" href="assets/aura-lifecycle-no-show.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-no-show.png" target="_blank" rel="noopener" aria-label="Open No-show recovery image at full size"><img data-src="assets/aura-lifecycle-no-show.png" loading="lazy" alt="04 / No-show recovery — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <figure class="flow-figure" id="flow-cancelled"><figcaption><h4>05 / Cancellation recovery</h4><p>Reschedules bypass cancellation recovery. Other cancellations reset the booking state, update the opportunity and receive two rebooking emails, with checks to exit recovery after a new booking.</p><a class="text-button" href="assets/aura-lifecycle-cancelled.png" target="_blank" rel="noopener">Open full-size image ↗</a></figcaption><a class="flow-image" href="assets/aura-lifecycle-cancelled.png" target="_blank" rel="noopener" aria-label="Open Cancellation recovery image at full size"><img data-src="assets/aura-lifecycle-cancelled.png" loading="lazy" alt="05 / Cancellation recovery — reconstructed horizontal GHL workflow screenshot"></a></figure>
+                  <p class="lifecycle-note">The showcase is a simplified overview. Detailed images are reconstructed from workflow screenshots; cropped labels and unshown action settings are not expanded or inferred.</p>
                 </div>
               </div>
             </div>
@@ -401,17 +449,21 @@
       const panel = document.getElementById(button.getAttribute('aria-controls'));
       button.setAttribute('aria-expanded', 'false');
       panel.classList.remove('open');
+      panel.inert = true;
       button.querySelector('.toggle-label').textContent = button.dataset.closedLabel;
     }
 
     toggles.forEach((button) => {
       button.dataset.closedLabel = button.querySelector('.toggle-label').textContent;
+      document.getElementById(button.getAttribute('aria-controls')).inert = true;
       button.addEventListener('click', () => {
         const wasOpen = button.getAttribute('aria-expanded') === 'true';
         toggles.forEach(closeProject);
         if (!wasOpen) {
           const panel = document.getElementById(button.getAttribute('aria-controls'));
           button.setAttribute('aria-expanded', 'true');
+          panel.inert = false;
+          panel.querySelectorAll('img[data-src]').forEach(img => { img.src = img.dataset.src; img.removeAttribute('data-src'); });
           panel.classList.add('open');
           button.querySelector('.toggle-label').textContent = 'Close details';
         }
@@ -429,3 +481,4 @@
   </script>
 </body>
 </html>
+
