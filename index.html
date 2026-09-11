@@ -313,6 +313,24 @@
     .contact-pending{font-size:.9rem;color:var(--muted)}
     @media(max-width:900px){.workflows{gap:14px}.project{padding:13px}.project h3{font-size:1.2rem}.hero-layout{grid-template-columns:1.6fr 1fr}.hero-art{height:230px}}
     @media(max-width:760px){.hero{padding:40px 0}.hero-layout{grid-template-columns:1fr;gap:20px}.hero-art{display:none}.hero-copy{font-size:1rem}.compact-section{grid-template-columns:1fr;gap:16px}.section-head{grid-template-columns:1fr;gap:15px}.workflows,.websites,.tools-list{grid-template-columns:1fr}.project{padding:18px}.project h3{font-size:1.5rem}.project-summary{font-size:1rem}section{padding:44px 0}.nav-links{gap:12px;font-size:.85rem}.nav-links a:not(:last-child){display:block}.nav-links a[href="#tools"],.nav-links a[href="#about"]{display:none}.wordmark{font-size:.9rem}.nav-shell nav{gap:15px;min-height:64px}.tools-list{gap:24px}.project-panel.open{margin-top:22px}}
+
+    .source-breakdown{padding:32px;background:var(--white);border:1px solid var(--line);border-radius:18px}
+    .source-breakdown>h3{font-size:1.7rem;margin:0 0 12px;letter-spacing:-.025em}
+    .source-intro{color:var(--muted);max-width:800px;margin-bottom:30px}
+    .source-paths{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    .source-path{min-width:0;padding:20px 20px 0;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#f5f7fb}
+    .source-path h4{font-size:1.25rem;color:var(--blue-dark);margin:0 0 24px}
+    .source-path h5{font-size:1rem;margin:0 0 12px}
+    .source-path p,.source-shared p{font-size:.94rem;color:#566176}
+    .source-shot{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:white}
+    .source-shot img{display:block;width:100%;height:auto}
+    .source-arrow{text-align:center;color:var(--blue-dark);font-size:.84rem;padding:18px 0}
+    .source-arrow span{display:block;font-size:1.7rem;line-height:1.2;margin-bottom:6px}
+    .source-merge{height:30px;border:solid #8596b5;border-width:0 2px 2px;width:calc(50% + 16px);margin:auto;position:relative}
+    .source-merge:after{content:'↓';position:absolute;left:50%;top:24px;transform:translateX(-50%);font-size:26px;color:#63769a}
+    .source-shared{margin-top:45px;padding:24px;background:#eef3fb;border:1px solid #ccd7ec;border-radius:12px}
+    .source-shared h4{font-size:1.2rem;margin:0 0 12px}
+    @media(max-width:760px){.source-breakdown{padding:18px}.source-paths{grid-template-columns:1fr;gap:22px}.source-path{border-bottom:1px solid var(--line);border-radius:12px;padding:16px}.source-merge{width:0;border-width:0 0 0 2px;height:20px}.source-shared{padding:16px}.source-merge:after{top:10px}.source-shared{margin-top:26px}}
 </style>
 </head>
 <body>
@@ -332,13 +350,13 @@
 <section id="about" class="about"><div class="wrap compact-section"><h2>About me</h2><p>I’m Jan Anthony Corral, based in the Philippines and looking for remote VA opportunities involving GoHighLevel automation and websites. I work through the steps of a process, connect the actions in the CRM, and use AI to support research, troubleshooting and implementation.</p></div></section><section id="work"><div class="wrap"><div class="section-head"><h2>Selected Works</h2><p class="section-intro">A closer look at the workflows I configure and the websites I work on.</p></div><h3 class="group-title">Workflows</h3><div class="project-grid workflows"><article class="project">
             <div class="project-meta"><span>Automation system</span><span>GoHighLevel</span></div>
             <div class="media-frame">
-              <img src="assets/ai-appointment-source-tracking-and-reminders.png" alt="Combined overview of an AI appointment source tracking and reminder system in GoHighLevel">
+              <img src="assets/ai-source-tracking-overview.webp" width="1600" height="1000" alt="Reconstructed GHL overview: two booking source workflows join one shared reminder sequence">
             </div>
             <div class="project-copy">
               <h3>AI Appointment Source Tracking & Reminders</h3>
               <div>
                 <p class="project-summary">Records whether an appointment came from the website AI widget or social messaging, then sends both sources into one reminder sequence. This keeps booking attribution clear and follow-up consistent.</p>
-                <p class="media-note">Overview combines three workflow screenshots into one AI-generated visual.</p><div class="project-controls">
+                <p class="media-note">Reconstructed from the original GHL screenshots. Two source workflows connect to one shared reminder sequence.</p><div class="project-controls">
                   <button class="text-button project-toggle" aria-expanded="false" aria-controls="workflow-details">
                     <span class="toggle-label">View breakdown</span><span class="arrow" aria-hidden="true">↓</span>
                   </button>
@@ -360,15 +378,7 @@
                 </div>
               </div>
             </div>
-            </article><article class="project placeholder"><div class="project-meta">Workflow</div><div class="media-frame placeholder-media"><span>More work to come</span></div><div class="project-copy"><h3>Next workflow</h3><p class="project-summary">A space for the next project. Details will be added when the work is ready to share.</p></div></article></div><div class="project-panel" id="workflow-details">
-              <div class="panel-inner">
-                <div class="panel-content">
-                  <div><h4>Objective</h4><p>Track which deployed AI agent successfully generated each appointment and keep follow-up consistent across both booking sources.</p></div>
-                  <div><h4>My contribution</h4><ul><li>Configured two source workflows</li><li>Updated a custom booking-source field</li><li>Connected both sources to one reminder workflow</li></ul></div>
-                  <div><h4>How it works</h4><p>Successful booking → source recorded as Website Widget AI or Social DM AI → contact added to the email and internal-notification reminder sequence.</p></div>
-                </div>
-              </div>
-            </div><div class="project-panel" id="lifecycle-details" inert>
+            </article><article class="project placeholder"><div class="project-meta">Workflow</div><div class="media-frame placeholder-media"><span>More work to come</span></div><div class="project-copy"><h3>Next workflow</h3><p class="project-summary">A space for the next project. Details will be added when the work is ready to share.</p></div></article></div><div class="project-panel" id="workflow-details" inert><div class="panel-inner"><div class="source-breakdown"><h3>From AI booking to reminders</h3><p class="source-intro">Each agent starts its own source workflow after booking. The contact’s source is recorded before both paths join one reminder workflow.</p><div class="source-paths"><div class="source-path"><h4>Website Widget AI</h4><h5>AI agent · Appointment booking settings</h5><p>“Trigger workflow after booking” selects <strong>Source | Website Widget AI</strong>. The source workflow runs after an appointment is successfully booked.</p><a class="source-shot" href="assets/widget-agent-settings.png" target="_blank" rel="noopener"><img loading="lazy" data-src="assets/widget-agent-settings.png" alt="Website Widget AI AI agent appointment booking settings"></a><div class="source-arrow"><span>↓</span> Successful booking starts the selected workflow</div><h5>Source | Website Widget AI</h5><p><strong>Update contact field</strong> sets <em>Demo Consultation Booking Source</em> to <strong>Website Widget AI</strong>. <strong>Add to Workflow</strong> then enrolls the contact in the shared reminders.</p><a class="source-shot" href="assets/widget-source-workflow.png" target="_blank" rel="noopener"><img loading="lazy" data-src="assets/widget-source-workflow.png" alt="Website Widget AI source workflow and booking source field configuration"></a><div class="source-arrow"><span>↓</span> Add to Workflow</div></div><div class="source-path"><h4>Social DM AI</h4><h5>AI agent · Appointment booking settings</h5><p>“Trigger workflow after booking” selects <strong>Source | Social DM AI</strong>. The source workflow runs after an appointment is successfully booked.</p><a class="source-shot" href="assets/social-agent-settings.png" target="_blank" rel="noopener"><img loading="lazy" data-src="assets/social-agent-settings.png" alt="Social DM AI AI agent appointment booking settings"></a><div class="source-arrow"><span>↓</span> Successful booking starts the selected workflow</div><h5>Source | Social DM AI</h5><p><strong>Update contact field</strong> sets <em>Demo Consultation Booking Source</em> to <strong>Social DM AI</strong>. <strong>Add to Workflow</strong> then enrolls the contact in the shared reminders.</p><a class="source-shot" href="assets/social-source-workflow.png" target="_blank" rel="noopener"><img loading="lazy" data-src="assets/social-source-workflow.png" alt="Social DM AI source workflow and booking source field configuration"></a><div class="source-arrow"><span>↓</span> Add to Workflow</div></div></div><div class="source-merge" aria-hidden="true"></div><div class="source-shared"><h4>Shared workflow · AURA 360 | Booking through AI Reminders</h4><p>Both paths continue here: three Wait → Email → Internal Notification groups handle customer reminders and team notifications. The screenshot shows the sequence; individual wait durations and message contents are not shown.</p><a class="source-shot" href="assets/shared-ai-reminders.png" target="_blank" rel="noopener"><img loading="lazy" data-src="assets/shared-ai-reminders.png" alt="Shared reminder workflow: three wait, email and internal notification groups"></a></div></div></div></div><div class="project-panel" id="lifecycle-details" inert>
               <div class="panel-inner">
                 <div class="lifecycle-breakdown">
                   <div class="lifecycle-intro"><span class="section-number">WORKFLOW BREAKDOWN</span><h4>From the full picture to each trigger.</h4><p>Start with the complete map, then follow the five paths below. Open any image at full size to inspect its action labels.</p></div>
@@ -455,4 +465,5 @@
   </script>
 </body>
 </html>
+
 
