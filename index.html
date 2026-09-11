@@ -358,7 +358,13 @@
     .image-stage.dragging{cursor:grabbing;user-select:none}
     .preview-image{display:block;max-width:none!important;margin:auto;object-fit:contain;user-select:none;-webkit-user-drag:none}
     @media(max-width:760px){.breakdown-dialog{width:calc(100vw - 24px);max-height:88dvh}.dialog-heading{padding:14px 16px}.dialog-heading h2{font-size:1.1rem}.breakdown-body{padding:12px}.breakdown-body .panel-content{grid-template-columns:1fr}.image-dialog{width:calc(100vw - 20px)}.image-toolbar{flex-wrap:wrap;padding:10px}.image-toolbar h2{font-size:.9rem}.zoom-controls{gap:5px}.image-help{margin:6px 10px}.source-paths{grid-template-columns:1fr}}
-</style>
+
+    @keyframes popup-enter{from{opacity:0;transform:translateY(14px) scale(.975)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes backdrop-enter{from{opacity:0}to{opacity:1}}
+    dialog[open]{animation:popup-enter .28s cubic-bezier(.2,.75,.25,1) both}
+    dialog[open]::backdrop{animation:backdrop-enter .28s ease-out both}
+    @media(prefers-reduced-motion:reduce){dialog[open],dialog[open]::backdrop{animation:none}}
+  </style>
 </head>
 <body>
   <header class="nav-shell">
@@ -383,7 +389,7 @@
               <h3>AI Appointment Source Tracking & Reminders</h3>
               <div>
                 <p class="project-summary">Records whether an appointment came from the website AI widget or social messaging, then sends both sources into one reminder sequence. This keeps booking attribution clear and follow-up consistent.</p>
-                <p class="media-note">Reconstructed from the original GHL screenshots. Two source workflows connect to one shared reminder sequence.</p><div class="project-controls">
+                <div class="project-controls">
                   <button class="text-button project-toggle" aria-expanded="false" aria-controls="workflow-details">
                     <span class="toggle-label">Open the Detailed Breakdown</span><span class="arrow" aria-hidden="true">↓</span>
                   </button>
@@ -391,7 +397,7 @@
               </div>
             </div>
             </article><article class="project" id="demo-lifecycle">
-            <div class="project-meta"><span>Demo lifecycle automation</span><span>GoHighLevel</span></div>
+            <div class="project-meta"><span>Demo Lifecycle Automation</span><span>GoHighLevel</span></div>
             <div class="media-frame">
               <img src="assets/aura-lifecycle-showcase.webp" width="1920" height="1080" loading="lazy" alt="Five paths in Aura's demo appointment lifecycle: nurture, confirmed booking, attendance, no-show recovery and cancellation recovery">
             </div>
@@ -513,7 +519,7 @@ document.querySelectorAll('.project .media-frame').forEach(frame=>{
   const img=frame.querySelector('img');if(!img)return;
   const b=document.createElement('button');b.type='button';b.className=frame.className+' showcase-zoom';b.setAttribute('aria-label','Open and zoom '+img.alt);b.setAttribute('aria-haspopup','dialog');
   while(frame.firstChild)b.append(frame.firstChild);
-  const hint=document.createElement('span');hint.className='zoom-hint';hint.textContent='Enlarge +';b.append(hint);frame.replaceWith(b);
+  frame.replaceWith(b);
   b.addEventListener('click',()=>openImage(img.currentSrc||img.src,img.alt,b));
 });
 document.querySelectorAll('.project-panel a[href]').forEach(a=>{
@@ -528,6 +534,7 @@ if(video){new IntersectionObserver(([entry])=>{if(entry.isIntersecting)video.pla
 </script>
 </body>
 </html>
+
 
 
 
