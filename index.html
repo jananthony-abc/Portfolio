@@ -452,7 +452,7 @@
                 </div>
               </div>
             </div>
-            </article><article class="project placeholder"><div class="project-meta">Website</div><div class="media-frame placeholder-media"><span>More work to come</span></div><div class="project-copy"><h3>Next website</h3><p class="project-summary">A space for the next project. Details will be added when the work is ready to share.</p></div></article></div><div class="project-panel" id="aura-details">
+            </article><article class="project" id="namaos-project"><div class="project-meta"><span>Business Website</span></div><div class="media-frame"><video muted loop playsinline controls preload="metadata" aria-label="NAMAOS website scrolling preview"><source src="assets/namaos-website-scroll.mp4" type="video/mp4"></video></div><div class="project-copy"><h3>NAMAOS Website</h3><div><p class="project-summary">A website presenting NAMAOS’s AI revenue infrastructure: connecting inquiries, responses, follow-ups, booking and CRM activity. The page introduces the service and directs visitors toward a demo or revenue assessment.</p><div class="project-controls"><button class="text-button project-toggle" aria-expanded="false" aria-controls="namaos-details"><span class="toggle-label">Open the Detailed Breakdown</span><span class="arrow" aria-hidden="true">↓</span></button><a class="text-button" href="https://www.namaos.com" target="_blank" rel="noopener noreferrer">Visit live website ↗</a></div></div></div></article></div><div class="project-panel" id="aura-details">
               <div class="panel-inner">
                 <div class="panel-content">
                   <div><h4>Starting point</h4><p>An existing live website was already in place and needed a clearer, more complete presentation.</p></div>
@@ -460,7 +460,7 @@
                   <div><h4>Implementation</h4><p>The work was completed with AI-assisted development as part of my practical workflow.</p></div>
                 </div>
               </div>
-            </div></div></section><section id="tools"><div class="wrap"><div class="section-head"><h2>Tools used</h2><p class="section-intro">The tools behind the work shown here.</p></div><div class="tools-list"><div><h3>GoHighLevel</h3><p>Workflows, contact fields, pipelines, appointment booking and email follow-up.</p></div><div><h3>ChatGPT &amp; Codex</h3><p>Research, troubleshooting and AI-assisted website development.</p></div><div><h3>GitHub</h3><p>Version control and publishing this portfolio through GitHub Pages.</p></div></div></div></section><section id="contact" class="contact"><div class="wrap"><h2>Contact me</h2><p>I’m open to remote work involving GoHighLevel automation, CRM operations and website improvements.</p><span class="contact-pending">Contact details coming soon</span></div></section></main>
+            </div></div></section><section id="tools"><div class="wrap"><div class="section-head"><h2>Tools used</h2><p class="section-intro">The tools behind the work shown here.</p></div><div class="tools-list"><div><h3>GoHighLevel</h3><p>Workflows, contact fields, pipelines, appointment booking and email follow-up.</p></div><div><h3>ChatGPT &amp; Codex</h3><p>Research, troubleshooting and AI-assisted website development.</p></div><div><h3>GitHub</h3><p>Version control and publishing this portfolio through GitHub Pages.</p></div></div></div></section><section id="contact" class="contact"><div class="wrap"><h2>Contact me</h2><p>I’m open to remote work involving GoHighLevel automation, CRM operations and website improvements.</p><span class="contact-pending">Contact details coming soon</span></div></section><div class="project-panel" id="namaos-details" inert><div class="panel-inner"><div class="panel-content"><div><h4>Website purpose</h4><p>Present NAMAOS’s approach to keeping leads connected across inquiry, response, follow-up, booking, CRM and recovery.</p></div><div><h4>What the page shows</h4><p>Platform, solutions, services and industry navigation, with examples of missed-call recovery, appointment support and CRM visibility.</p></div><div><h4>Visitor next steps</h4><p>Calls to action offer a live demo, a revenue assessment and a revenue leakage audit.</p></div></div></div></div></main>
 
   <footer>
     <div class="wrap"><span>© 2026 Jan Anthony Corral</span><span>Based in the Philippines · Available remotely</span></div>
@@ -543,11 +543,11 @@ document.querySelectorAll('.project-panel a[href]').forEach(a=>{
 });
 [breakdown,viewer].forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closePopup(d)}}));
 window.addEventListener('resize',()=>{if(viewer.open)fit()});
-const video=document.querySelector('video');
-if(video){new IntersectionObserver(([entry])=>{if(entry.isIntersecting)video.play().catch(()=>{});else video.pause()},{threshold:.4}).observe(video)}
+document.querySelectorAll('video').forEach(video=>{new IntersectionObserver(([entry])=>{if(entry.isIntersecting)video.play().catch(()=>{});else video.pause()},{threshold:.4}).observe(video)});
 </script>
 </body>
 </html>
+
 
 
 
