@@ -263,7 +263,57 @@
     .flow-image img {display:block;width:100%;height:auto;min-height:90px}
     .lifecycle-note {font-size:.83rem;color:var(--muted);margin:0;border-top:1px solid var(--line);padding-top:24px}
     @media(max-width:760px){.lifecycle-breakdown{padding:20px}.flow-index{gap:8px}.flow-figure{padding:24px 0}.lifecycle-intro h4{font-size:1.5rem}}
-  </style>
+  
+    /* Homepage layout */
+    .hero{min-height:0;padding:64px 0 58px;overflow:hidden}
+    .hero-layout{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:40px}
+    .hero-name{font-size:1.1rem;color:var(--blue-dark);font-weight:600;margin-bottom:20px}
+    h1{font-size:clamp(2.7rem,5.2vw,4.5rem);line-height:1.04;letter-spacing:-.055em;margin-bottom:20px}
+    .hero-copy{font-size:1.12rem;max-width:530px;margin-bottom:28px}
+    .hero-art{height:285px;position:relative;isolation:isolate}
+    .shape{position:absolute;width:65%;height:76%;border-radius:42px}
+    .shape-one{background:#73baff;transform:rotate(-12deg);left:0;top:30px}
+    .shape-two{background:#2558d9;transform:rotate(9deg);left:22%;top:5px}
+    .shape-three{background:#173c96;left:37%;top:58px;border-radius:42px 42px 90px 42px}
+    section{padding:64px 0}
+    h2{font-size:clamp(2rem,3.5vw,3rem);line-height:1.1}
+    .compact-section{display:grid;grid-template-columns:1fr 2fr;gap:50px;align-items:start}
+    .compact-section p{max-width:750px;margin:0;font-size:1.08rem}
+    .introduction{padding:38px 0;border-bottom:1px solid var(--line)}
+    .about{padding:38px 0;background:#e8edf6;color:var(--ink)}
+    .about p{color:#4f596d}
+    .section-head{margin-bottom:34px;gap:36px;grid-template-columns:1fr 1.2fr}
+    .group-title{font-size:1.25rem;font-weight:600;margin:0 0 18px}
+    .website-heading{margin-top:46px}
+    .project-grid{display:grid;gap:22px;align-items:stretch}
+    .workflows{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .websites{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .project{min-width:0;border:1px solid var(--line);padding:16px;background:var(--white);border-radius:20px;display:flex;flex-direction:column;scroll-margin-top:95px}
+    .project-meta{font-size:.75rem;gap:10px;min-height:25px;margin-bottom:12px;flex-wrap:wrap}
+    .media-frame{box-shadow:none;border:1px solid #e0e4ec;border-radius:12px;background:#f0f3f8;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+    .media-frame img{width:100%;height:100%;object-fit:contain;background:#f0f3f8}
+    .media-frame video{width:100%;height:100%;object-fit:contain;aspect-ratio:auto;background:#f0f3f8}
+    .browser-bar{display:none}
+    .project-copy{display:flex;flex-direction:column;gap:0;padding-top:22px;flex:1}
+    .project-copy>div{display:flex;flex-direction:column;flex:1}
+    .project h3{font-size:1.35rem;line-height:1.22;letter-spacing:-.025em;margin-bottom:14px}
+    .project-summary{font-size:.95rem;margin-bottom:18px}
+    .project-controls{margin-top:auto;padding-top:10px;gap:16px;font-size:.88rem}
+    .media-note{font-size:.73rem;line-height:1.5;color:var(--muted)}
+    .placeholder{background:transparent;border-style:dashed}
+    .placeholder-media{border-style:dashed;color:var(--muted);font-size:.9rem;width:100%}
+    .placeholder .project-copy{opacity:.8}
+    .project-panel{grid-column:1/-1}
+    .tools-list{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;border-top:1px solid var(--line);padding-top:25px}
+    .tools-list h3{font-size:1.1rem;margin:0 0 8px}
+    .tools-list p{font-size:.97rem;color:var(--muted);margin:0}
+    #tools{border-top:1px solid var(--line)}
+    .contact{background:#e7edf9}
+    .contact h2{margin-bottom:20px}
+    .contact-pending{font-size:.9rem;color:var(--muted)}
+    @media(max-width:900px){.workflows{gap:14px}.project{padding:13px}.project h3{font-size:1.2rem}.hero-layout{grid-template-columns:1.6fr 1fr}.hero-art{height:230px}}
+    @media(max-width:760px){.hero{padding:40px 0}.hero-layout{grid-template-columns:1fr;gap:20px}.hero-art{display:none}.hero-copy{font-size:1rem}.compact-section{grid-template-columns:1fr;gap:16px}.section-head{grid-template-columns:1fr;gap:15px}.workflows,.websites,.tools-list{grid-template-columns:1fr}.project{padding:18px}.project h3{font-size:1.5rem}.project-summary{font-size:1rem}section{padding:44px 0}.nav-links{gap:12px;font-size:.85rem}.nav-links a:not(:last-child){display:block}.nav-links a[href="#tools"],.nav-links a[href="#about"]{display:none}.wordmark{font-size:.9rem}.nav-shell nav{gap:15px;min-height:64px}.tools-list{gap:24px}.project-panel.open{margin-top:22px}}
+</style>
 </head>
 <body>
   <header class="nav-shell">
@@ -271,38 +321,15 @@
       <a class="wordmark" href="#top">Jan Anthony Corral</a>
       <div class="nav-links">
         <a href="#work">Selected Work</a>
-        <a href="#experience">What I Do</a>
+        <a href="#tools">Tools</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">GoHighLevel automation & operations</p>
-        <h1>I build the systems behind better customer journeys.</h1>
-        <p class="hero-copy">I work on CRM automation, AI-assisted appointment systems, email follow-ups, and websites for service businesses using GoHighLevel and practical AI tools.</p>
-        <div class="actions">
-          <a class="button" href="#work">View selected work ↓</a>
-          <a class="button secondary" href="#contact">Contact me</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="work">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="section-number">01 / SELECTED WORK</div>
-            <h2>Built work,<br>shown clearly.</h2>
-          </div>
-          <p class="section-intro">A focused selection of systems and web work I have personally configured, improved, or implemented.</p>
-        </div>
-
-        <div class="projects">
-          <article class="project">
+  <main id="top"><section class="hero"><div class="wrap hero-layout"><div><p class="hero-name">Jan Anthony Corral</p><h1>GoHighLevel workflows<br>&amp; websites.</h1><p class="hero-copy">Appointment systems, customer follow-up and service-business websites.</p><div class="actions"><a class="button" href="#work">View my work ↓</a><a class="button secondary" href="#contact">Contact me</a></div></div><div class="hero-art" aria-hidden="true"><div class="shape shape-one"></div><div class="shape shape-two"></div><div class="shape shape-three"></div></div></div></section><section id="introduction" class="introduction"><div class="wrap compact-section"><h2>What I work on</h2><p>I configure GoHighLevel workflows for appointment booking, reminders and customer follow-up. I also build and improve websites that explain a service and help visitors take the next step.</p></div></section>
+<section id="about" class="about"><div class="wrap compact-section"><h2>About me</h2><p>I’m Jan Anthony Corral, based in the Philippines and looking for remote VA opportunities involving GoHighLevel automation and websites. I work through the steps of a process, connect the actions in the CRM, and use AI to support research, troubleshooting and implementation.</p></div></section><section id="work"><div class="wrap"><div class="section-head"><h2>Selected Works</h2><p class="section-intro">A closer look at the workflows I configure and the websites I work on.</p></div><h3 class="group-title">Workflows</h3><div class="project-grid workflows"><article class="project">
             <div class="project-meta"><span>Automation system</span><span>GoHighLevel</span></div>
             <div class="media-frame">
               <img src="assets/ai-appointment-source-tracking-and-reminders.png" alt="Combined overview of an AI appointment source tracking and reminder system in GoHighLevel">
@@ -310,26 +337,15 @@
             <div class="project-copy">
               <h3>AI Appointment Source Tracking & Reminders</h3>
               <div>
-                <p class="project-summary">A connected workflow system that identifies whether an AI-booked appointment came from the website widget or social messaging, records the source, and enrolls the contact into a shared reminder sequence.</p>
-                <div class="project-controls">
+                <p class="project-summary">Records whether an appointment came from the website AI widget or social messaging, then sends both sources into one reminder sequence. This keeps booking attribution clear and follow-up consistent.</p>
+                <p class="media-note">Overview combines three workflow screenshots into one AI-generated visual.</p><div class="project-controls">
                   <button class="text-button project-toggle" aria-expanded="false" aria-controls="workflow-details">
                     <span class="toggle-label">View breakdown</span><span class="arrow" aria-hidden="true">↓</span>
                   </button>
                 </div>
               </div>
             </div>
-            <div class="project-panel" id="workflow-details">
-              <div class="panel-inner">
-                <div class="panel-content">
-                  <div><h4>Objective</h4><p>Track which deployed AI agent successfully generated each appointment and keep follow-up consistent across both booking sources.</p></div>
-                  <div><h4>My contribution</h4><ul><li>Configured two source workflows</li><li>Updated a custom booking-source field</li><li>Connected both sources to one reminder workflow</li></ul></div>
-                  <div><h4>How it works</h4><p>Successful booking → source recorded as Website Widget AI or Social DM AI → contact added to the email and internal-notification reminder sequence.</p></div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="project" id="demo-lifecycle">
+            </article><article class="project" id="demo-lifecycle">
             <div class="project-meta"><span>Demo lifecycle automation</span><span>Aura Assistant · GoHighLevel</span></div>
             <div class="media-frame">
               <img src="assets/aura-lifecycle-showcase.webp" width="1920" height="1080" loading="lazy" alt="Five paths in Aura's demo appointment lifecycle: nurture, confirmed booking, attendance, no-show recovery and cancellation recovery">
@@ -337,14 +353,22 @@
             <div class="project-copy">
               <h3>Aura Demo Appointment Lifecycle</h3>
               <div>
-                <p class="project-summary">One GoHighLevel workflow with five triggers, covering the journey from demo interest to booking, attendance and recovery. Tracked email links, contact tags and opportunity updates keep the follow-up tied to each contact’s appointment status.</p>
-                <p class="lifecycle-caption">Nurture → booking → attendance, with separate recovery paths for missed and cancelled demos.</p>
+                <p class="project-summary">Five triggers manage demo nurture, booking confirmation, attendance, no-shows and cancellations. Tracked links and booking checks guide follow-up as each contact’s status changes.</p>
+                
                 <div class="project-controls">
                   <button class="text-button project-toggle" aria-expanded="false" aria-controls="lifecycle-details"><span class="toggle-label">Explore the workflow</span><span class="arrow" aria-hidden="true">↓</span></button>
                 </div>
               </div>
             </div>
-            <div class="project-panel" id="lifecycle-details" inert>
+            </article><article class="project placeholder"><div class="project-meta">Workflow</div><div class="media-frame placeholder-media"><span>More work to come</span></div><div class="project-copy"><h3>Next workflow</h3><p class="project-summary">A space for the next project. Details will be added when the work is ready to share.</p></div></article></div><div class="project-panel" id="workflow-details">
+              <div class="panel-inner">
+                <div class="panel-content">
+                  <div><h4>Objective</h4><p>Track which deployed AI agent successfully generated each appointment and keep follow-up consistent across both booking sources.</p></div>
+                  <div><h4>My contribution</h4><ul><li>Configured two source workflows</li><li>Updated a custom booking-source field</li><li>Connected both sources to one reminder workflow</li></ul></div>
+                  <div><h4>How it works</h4><p>Successful booking → source recorded as Website Widget AI or Social DM AI → contact added to the email and internal-notification reminder sequence.</p></div>
+                </div>
+              </div>
+            </div><div class="project-panel" id="lifecycle-details" inert>
               <div class="panel-inner">
                 <div class="lifecycle-breakdown">
                   <div class="lifecycle-intro"><span class="section-number">WORKFLOW BREAKDOWN</span><h4>From the full picture to each trigger.</h4><p>Start with the complete map, then follow the five paths below. Open any image at full size to inspect its action labels.</p></div>
@@ -358,14 +382,11 @@
                   <p class="lifecycle-note">The showcase is a simplified overview. Detailed images are reconstructed from workflow screenshots; cropped labels and unshown action settings are not expanded or inferred.</p>
                 </div>
               </div>
-            </div>
-          </article>
-
-          <article class="project">
+            </div><h3 class="group-title website-heading">Websites</h3><div class="project-grid websites"><article class="project">
             <div class="project-meta"><span>Website revamp</span><span>Aura Assistant</span></div>
             <div class="media-frame">
               <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <video muted loop playsinline preload="metadata" poster="">
+              <video muted loop playsinline preload="metadata" controls>
                 <source src="assets/aura-assistant-website-scroll.mp4" type="video/mp4">
               </video>
             </div>
@@ -381,7 +402,7 @@
                 </div>
               </div>
             </div>
-            <div class="project-panel" id="aura-details">
+            </article><article class="project placeholder"><div class="project-meta">Website</div><div class="media-frame placeholder-media"><span>More work to come</span></div><div class="project-copy"><h3>Next website</h3><p class="project-summary">A space for the next project. Details will be added when the work is ready to share.</p></div></article></div><div class="project-panel" id="aura-details">
               <div class="panel-inner">
                 <div class="panel-content">
                   <div><h4>Starting point</h4><p>An existing live website was already in place and needed a clearer, more complete presentation.</p></div>
@@ -389,54 +410,7 @@
                   <div><h4>Implementation</h4><p>The work was completed with AI-assisted development as part of my practical workflow. A before-and-after comparison can be added once the earlier website version is recovered.</p></div>
                 </div>
               </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="wrap">
-        <div class="section-head">
-          <div><div class="section-number">02 / WHAT I WORK ON</div><h2>Practical backend work.</h2></div>
-          <p class="section-intro">The actual areas I have worked with—not a list of tools added just to fill space.</p>
-        </div>
-        <div class="work-list">
-          <div class="work-row"><h3>CRM & automation</h3><p>GoHighLevel workflows, pipelines, custom values and fields, contact importing and exporting, reminders, follow-ups, and nurture sequences.</p></div>
-          <div class="work-row"><h3>AI appointment systems</h3><p>AI agents, website chat widgets, social messaging agents, knowledge bases, appointment-booking logic, and AI-generated booking attribution.</p></div>
-          <div class="work-row"><h3>Email & campaign operations</h3><p>Email campaigns, reusable templates, automated customer follow-ups, internal notifications, and lifecycle communication.</p></div>
-          <div class="work-row"><h3>Websites</h3><p>Building and improving service-business websites, expanding references into fuller experiences, and using AI-assisted coding to implement changes.</p></div>
-          <div class="work-row"><h3>Content operations</h3><p>Creating AI-assisted static content and scheduling social posts through GoHighLevel Social Planner.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="wrap">
-        <div class="section-head">
-          <div><div class="section-number">03 / ABOUT</div><h2>Hands-on and systems-focused.</h2></div>
-          <p class="section-intro">Based in the Philippines and working remotely with service-business systems.</p>
-        </div>
-        <div class="about-grid">
-          <p class="about-copy">I focus on understanding how a process should work, then building and organizing the systems that support it.</p>
-          <div class="about-detail">
-            <p>My experience centers on GoHighLevel operations, CRM automation, AI-assisted customer communication, email follow-up, and website implementation.</p>
-            <p>I use AI heavily for research, troubleshooting, and development while keeping the business goal and actual system logic at the center of the work.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <div class="section-number">04 / CONTACT</div>
-        <h2>Need help improving your GoHighLevel systems?</h2>
-        <p>I’m open to remote opportunities where I can support automation, CRM operations, AI-agent systems, email follow-up, or website improvements.</p>
-        <!-- Replace the placeholder below with your real email before publishing. -->
-        <span class="button secondary contact-placeholder">Add your email address</span>
-      </div>
-    </section>
-  </main>
+            </div></div></section><section id="tools"><div class="wrap"><div class="section-head"><h2>Tools used</h2><p class="section-intro">The tools behind the work shown here.</p></div><div class="tools-list"><div><h3>GoHighLevel</h3><p>Workflows, contact fields, pipelines, appointment booking and email follow-up.</p></div><div><h3>ChatGPT &amp; Codex</h3><p>Research, troubleshooting and AI-assisted website development.</p></div><div><h3>GitHub</h3><p>Version control and publishing this portfolio through GitHub Pages.</p></div></div></div></section><section id="contact" class="contact"><div class="wrap"><h2>Contact me</h2><p>I’m open to remote work involving GoHighLevel automation, CRM operations and website improvements.</p><span class="contact-pending">Contact details coming soon</span></div></section></main>
 
   <footer>
     <div class="wrap"><span>© 2026 Jan Anthony Corral</span><span>Based in the Philippines · Available remotely</span></div>
