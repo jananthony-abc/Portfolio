@@ -371,7 +371,7 @@
     dialog[open].is-closing{animation:popup-exit .18s ease-in both;pointer-events:none}
     dialog[open].is-closing::backdrop{animation:backdrop-exit .18s ease-in both}
     @media(prefers-reduced-motion:reduce){dialog[open].is-closing,dialog[open].is-closing::backdrop{animation:none}}
-  .contact-email{display:inline-flex;align-items:center;gap:10px;color:var(--ink,#172033);font-weight:600;font-size:clamp(16px,2.5vw,20px);text-decoration:none;background:none;border:0;padding:0}.contact-email svg{flex-shrink:0}.contact-email:hover span{text-decoration:underline;text-underline-offset:4px}.contact-email:focus-visible{outline:2px solid currentColor;outline-offset:6px}</style>
+  .contact-email{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:400;font-size:14px;text-decoration:none;background:none;border:0;padding:0;transition:color 180ms ease}.contact-email svg{flex-shrink:0;width:16px;height:16px}.contact-email:hover,.contact-email:hover span{color:#2563eb;text-decoration:none}.contact-email:focus-visible{outline:2px solid currentColor;outline-offset:6px}</style>
 </head>
 <body>
   <header class="nav-shell">
