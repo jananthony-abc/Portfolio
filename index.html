@@ -576,13 +576,13 @@ let config = {
     SIM_RESOLUTION: 128,
     DYE_RESOLUTION: 1024,
     CAPTURE_RESOLUTION: 512,
-    DENSITY_DISSIPATION: 1.8,
+    DENSITY_DISSIPATION: 0,
     VELOCITY_DISSIPATION: 0.2,
     PRESSURE: 0.8,
     PRESSURE_ITERATIONS: 20,
-    CURL: 42,
-    SPLAT_RADIUS: 0.085,
-    SPLAT_FORCE: 4600,
+    CURL: 26,
+    SPLAT_RADIUS: 0.18,
+    SPLAT_FORCE: 3000,
     SHADING: true,
     COLORFUL: false,
     COLOR_UPDATE_SPEED: 10,
@@ -1049,8 +1049,11 @@ const displayShaderSource = `
     #endif
 
         float density = max(c.r,max(c.g,c.b));
-        vec3 pigment=c/max(density,0.26);
-        float a=smoothstep(0.035,0.38,density)*uFade;
+        vec3 pigment=c;
+        float mask=texture2D(uTexture,vUv).a;
+        float a=smoothstep(0.0,.55,mask)*uFade;
+        float ripple=sin(mask*34.0-uTime*3.0)*.025*mask;
+        pigment=clamp(pigment+ripple,0.0,1.0);
         vec2 edge=min(vUv,1.0-vUv);
         a*=smoothstep(0.0,0.095,min(edge.x,edge.y));
         // Fine pigment-attached flecks, with restrained brightness.
@@ -1184,13 +1187,15 @@ const splatShader = compileShader(gl.FRAGMENT_SHADER, `
     uniform vec3 color;
     uniform vec2 point;
     uniform float radius;
+    uniform float revealOnly;
 
     void main () {
         vec2 p = vUv - point.xy;
         p.x *= aspectRatio;
         vec3 splat = exp(-dot(p, p) / radius) * color;
         vec3 base = texture2D(uTarget, vUv).xyz;
-        gl_FragColor = vec4(base + splat, 1.0);
+        float reveal=exp(-dot(p,p)/radius);
+        gl_FragColor = revealOnly>0.5?vec4(base,max(texture2D(uTarget,vUv).a,reveal)):vec4(base+splat,1.0);
     }
 `);
 
@@ -1205,6 +1210,7 @@ const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
     uniform vec2 dyeTexelSize;
     uniform float dt;
     uniform float dissipation;
+    uniform float pigmentPass;
 
     vec4 bilerp (sampler2D sam, vec2 uv, vec2 tsize) {
         vec2 st = uv / tsize - 0.5;
@@ -1230,6 +1236,7 @@ const advectionShader = compileShader(gl.FRAGMENT_SHADER, `
     #endif
         float decay = 1.0 + dissipation * dt;
         gl_FragColor = result / decay;
+        if(pigmentPass>0.5)gl_FragColor.a=max(0.0,result.a-dt*.5);
     }`,
     ext.supportLinearFiltering ? null : ['MANUAL_FILTERING']
 );
@@ -1617,7 +1624,18 @@ function updateKeywords () {
 }
 
 updateKeywords();
+
+const stripeProgram=new Program(baseVertexShader,compileShader(gl.FRAGMENT_SHADER,`
+ precision highp float; varying vec2 vUv;
+ void main(){
+ float band=mod(floor((vUv.x+vUv.y*.18)*100.0),4.0);
+ vec3 c=band<1.0?vec3(.035,.25,.95):band<2.0?vec3(.035,.065,.17):band<3.0?vec3(.94,.91,.83):vec3(.78,.56,.20);
+ gl_FragColor=vec4(c,0.0);
+ }`));
+function seedStripes(){gl.disable(gl.BLEND);stripeProgram.bind();blit(dye.write);dye.swap();}
+
 initFramebuffers();
+seedStripes();
 
 
 let lastUpdateTime = Date.now();
@@ -1627,8 +1645,7 @@ update();
 function update () {
     const dt = calcDeltaTime();
     if(document.hidden||!inView||performance.now()-lastContact>2300){requestAnimationFrame(update);return;}
-    if (resizeCanvas())
-        initFramebuffers();
+    if (resizeCanvas()){initFramebuffers();seedStripes();}
     updateColors(dt);
     applyInputs();
     if (!config.PAUSED)
@@ -1732,6 +1749,7 @@ function step (dt) {
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocityId);
     gl.uniform1i(advectionProgram.uniforms.uSource, velocityId);
     gl.uniform1f(advectionProgram.uniforms.dt, dt);
+    gl.uniform1f(advectionProgram.uniforms.pigmentPass,0);
     gl.uniform1f(advectionProgram.uniforms.dissipation, config.VELOCITY_DISSIPATION);
     blit(velocity.write);
     velocity.swap();
@@ -1741,6 +1759,7 @@ function step (dt) {
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocity.read.attach(0));
     gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1));
     gl.uniform1f(advectionProgram.uniforms.dissipation, config.DENSITY_DISSIPATION);
+    gl.uniform1f(advectionProgram.uniforms.pigmentPass,1);
     blit(dye.write);
     dye.swap();
 }
@@ -1875,12 +1894,8 @@ function blur (target, temp, iterations) {
 
 function splatPointer(pointer){
  const dx=pointer.deltaX*config.SPLAT_FORCE,dy=pointer.deltaY*config.SPLAT_FORCE;
- const length=Math.hypot(dx,dy)||1,nx=-dy/length,ny=dx/length;
- const colors=[{r:.025,g:.16,b:.85},{r:.012,g:.025,b:.10},{r:.7,g:.66,b:.55},{r:.65,g:.38,b:.055}];
- for(let i=0;i<4;i++){
-  const offset=(i-1.5)*.022;
-  splat(pointer.texcoordX+nx*offset,pointer.texcoordY+ny*offset,dx*.38,dy*.38,colors[i]);
- }
+ const count=Math.max(1,Math.min(12,Math.ceil(Math.hypot(pointer.deltaX,pointer.deltaY)*100)));
+ for(let i=1;i<=count;i++)splat(pointer.prevTexcoordX+(pointer.texcoordX-pointer.prevTexcoordX)*i/count,pointer.prevTexcoordY+(pointer.texcoordY-pointer.prevTexcoordY)*i/count,dx/count,dy/count,{r:0,g:0,b:0});
 }
 function multipleSplats (amount) {
     for (let i = 0; i < amount; i++) {
@@ -1896,8 +1911,9 @@ function multipleSplats (amount) {
     }
 }
 
-function splat (x, y, dx, dy, color) {
+function splat (x, y, dx, dy, color) { gl.disable(gl.BLEND);
     splatProgram.bind();
+    gl.uniform1f(splatProgram.uniforms.revealOnly,0);
     gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
     gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
     gl.uniform2f(splatProgram.uniforms.point, x, y);
@@ -1906,6 +1922,7 @@ function splat (x, y, dx, dy, color) {
     blit(velocity.write);
     velocity.swap();
 
+    gl.uniform1f(splatProgram.uniforms.revealOnly,1);
     gl.uniform1i(splatProgram.uniforms.uTarget, dye.read.attach(0));
     gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
     blit(dye.write);
@@ -1921,7 +1938,7 @@ function correctRadius (radius) {
 
 host.addEventListener('pointermove', e=>{
  if(e.pointerType==='touch')return;
- if(performance.now()-lastContact>2300){clearProgram.bind();gl.uniform1f(clearProgram.uniforms.value,0);gl.uniform1i(clearProgram.uniforms.uTexture,dye.read.attach(0));blit(dye.write);dye.swap();}
+ if(performance.now()-lastContact>2300)seedStripes();
  const r=canvas.getBoundingClientRect(),x=scaleByPixelRatio(e.clientX-r.left),y=scaleByPixelRatio(e.clientY-r.top),p=pointers[0];
  if(!p.down)updatePointerDownData(p,-1,x,y);else updatePointerMoveData(p,x,y);
  lastContact=performance.now();
