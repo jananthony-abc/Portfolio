@@ -385,18 +385,16 @@ nav .nav-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 18p
 #tools .section-head{margin-bottom:28px}.tool-group{display:grid;grid-template-columns:150px 1fr;gap:26px;border-top:1px solid var(--line,#d1d8e2);padding:28px 0}.tool-group:last-child{padding-bottom:0}.tool-group>h3{font-size:.85rem;font-weight:600;color:var(--muted);margin:3px 0}.tool-collection{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}.tool-item{position:relative;padding:0 0 14px;min-width:0}.tool-item:after{content:'';position:absolute;left:0;bottom:0;width:30px;height:2px;background:#2563eb;transform:scaleX(0);transform-origin:left;transition:transform .2s}.tool-item:hover:after,.tool-item:focus-within:after{transform:scaleX(1)}.tool-logo{height:30px;display:flex;align-items:center;color:#172033;margin-bottom:15px;transition:color .2s}.tool-item:hover .tool-logo{color:#2563eb}.tool-monogram{font-size:16px;font-weight:800;letter-spacing:-1px}.tool-item h4{font-size:1rem;margin:0 0 9px}.tool-item p{font-size:.9rem;line-height:1.65;color:var(--muted);margin:0}.tool-work-link{display:inline-block;margin-top:13px;font-size:.82rem;font-weight:600;color:var(--blue);text-decoration:none}.tool-work-link:hover{color:#2563eb}@media(max-width:800px){.tool-group{grid-template-columns:1fr;gap:20px}.tool-collection{gap:22px}}@media(max-width:560px){.tool-collection{grid-template-columns:1fr}.tool-item{padding-left:42px}.tool-logo{position:absolute;left:0;top:0}.tool-item:after{left:42px}.tool-group{padding:24px 0}.tool-item h4{margin-bottom:5px}}
 .hero-portrait{perspective:900px}.hero-portrait img{z-index:1;transform:rotateX(var(--ry,0deg)) rotateY(var(--rx,0deg));transition:transform .18s ease-out}@media(prefers-reduced-motion:reduce){.hero-portrait img,}
 
-/* Outline draw inspired by gallery option 21, adapted to the existing pills. */
-.actions .button,nav .nav-contact{position:relative;overflow:visible;isolation:isolate}
-.cta-ring{position:absolute;inset:-5px;width:calc(100% + 10px);height:calc(100% + 10px);overflow:visible;pointer-events:none;transition:transform .4s cubic-bezier(.7,0,.3,1)}
+/* Draw directly on the existing pill edge after color inversion. */
+.actions .button,nav .nav-contact{position:relative;overflow:visible;isolation:isolate;transition:transform .25s ease,background .25s ease,color .25s ease;border:1px solid var(--ink)}
+.cta-ring{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);overflow:visible;pointer-events:none}
 .cta-ring rect{fill:none;stroke-width:1;vector-effect:non-scaling-stroke}
-.cta-ring-track{stroke:#172033;opacity:0;transition:opacity .25s}
-.cta-ring-draw{stroke:#2563eb;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .4s cubic-bezier(.7,0,.3,1),filter .4s}
-.actions .button:hover,nav .nav-contact:hover{transform:none;background:var(--ink);color:#fff}
-.actions .button.secondary:hover{background:transparent;color:var(--ink)}
-.actions .button:is(:hover,:focus-visible) .cta-ring,nav .nav-contact:is(:hover,:focus-visible) .cta-ring{transform:scale(1.035,1.08)}
-.actions .button:is(:hover,:focus-visible) .cta-ring-track,nav .nav-contact:is(:hover,:focus-visible) .cta-ring-track{opacity:.15}
-.actions .button:is(:hover,:focus-visible) .cta-ring-draw,nav .nav-contact:is(:hover,:focus-visible) .cta-ring-draw{stroke-dashoffset:0;filter:drop-shadow(0 0 3px #2563eb80)}
-@media(prefers-reduced-motion:reduce){.cta-ring,.cta-ring rect{transition:none!important;transform:none!important}}
+.cta-ring-track{display:none}
+.cta-ring-draw{stroke:currentColor;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s cubic-bezier(.7,0,.3,1),filter .25s}
+.actions .button:is(:hover,:focus-visible),nav .nav-contact:is(:hover,:focus-visible){transform:scale(1.045);background:var(--white);color:var(--ink)}
+.actions .button.secondary:is(:hover,:focus-visible){background:var(--ink);color:var(--white)}
+.actions .button:is(:hover,:focus-visible) .cta-ring-draw,nav .nav-contact:is(:hover,:focus-visible) .cta-ring-draw{stroke-dashoffset:0;stroke-width:1.5;filter:drop-shadow(0 0 2px #2563eb70);transition-delay:.12s}
+@media(prefers-reduced-motion:reduce){.actions .button,nav .nav-contact,.cta-ring rect{transition:none!important;transform:none!important}}
 </style>
 </head>
 <body>
