@@ -407,6 +407,22 @@ nav .nav-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 18p
 @media(prefers-reduced-motion:reduce){.hero-portrait img{transform:scale(.9)!important;transition:none}.hero-portrait:after{display:none}.portrait-caption{transition:none}}
 
 .gallery-home-link{padding-top:32px}.gallery-intro{padding:64px 0 28px}.gallery-intro h1{font-size:clamp(2.8rem,6vw,5rem);margin:12px 0 20px}.gallery-intro p{max-width:670px;color:var(--muted);font-size:1.1rem;line-height:1.7}.eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}.gallery-jump{padding:32px 0 56px;text-align:center;border-bottom:1px solid var(--line)}.gallery-jump a{font-size:clamp(1.3rem,3vw,2rem);font-weight:600;text-decoration:none;color:var(--ink)}.gallery-jump a:hover{color:var(--blue)}.gallery-jump p{color:var(--muted);margin:12px 0 0}.gallery-filter{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 18px}.gallery-filter button{font:inherit;font-size:.9rem;cursor:pointer;background:transparent;border:1px solid var(--line);border-radius:999px;padding:10px 17px;color:var(--ink)}.gallery-filter button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:white}.gallery-filter button:hover{border-color:var(--blue)}.collection-count{color:var(--muted);font-size:.85rem;margin-bottom:24px}.collection-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.collection-grid [hidden]{display:none!important}.new-breakdown .flow-image{display:block;margin:20px 0 30px}.new-breakdown .flow-image img{width:100%;height:auto!important;max-height:440px;object-fit:contain}.gallery-page #work{padding-top:32px}.gallery-page .workflow-disclosure{max-width:850px}.gallery-page #collection{scroll-margin-top:85px}a:focus-visible,button:focus-visible{outline:2px solid #2558d9;outline-offset:4px}@media(max-width:900px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.collection-grid{grid-template-columns:1fr}.gallery-intro{padding-top:36px}.nav-links{gap:9px!important}.nav-links a[href="#work"],.nav-links a[href="index.html#work"]{display:none!important}}
+
+/* Compact homepage spacing and centered gallery invitation. */
+body:not(.gallery-page) main>section{padding-block:46px}
+body:not(.gallery-page) main>.hero{padding-block:44px}
+body:not(.gallery-page) main>.about,body:not(.gallery-page) main>.introduction{padding-block:28px}
+body:not(.gallery-page) #work>.wrap{max-width:1080px}
+body:not(.gallery-page) #work .section-head{margin-bottom:26px}
+body:not(.gallery-page) #work .project-grid{gap:18px}
+body:not(.gallery-page) #work .websites{max-width:960px;margin-inline:auto}
+body:not(.gallery-page) #work .media-frame{aspect-ratio:16/9}
+body:not(.gallery-page) #work .project-copy{padding-top:16px}
+body:not(.gallery-page) #work .project h3{margin-bottom:10px}
+body:not(.gallery-page) #work .project-summary{line-height:1.6;margin-bottom:12px}
+body:not(.gallery-page) #work .website-heading{margin-top:32px}
+.gallery-home-link{text-align:center;padding-top:26px}
+@media(max-width:760px){body:not(.gallery-page) main>section{padding-block:34px}body:not(.gallery-page) main>.hero{padding-block:32px}body:not(.gallery-page) #work .project-grid{gap:18px}}
 </style>
 </head>
 <body>
