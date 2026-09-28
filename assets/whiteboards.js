@@ -26,23 +26,40 @@ const configs={
  'aura-details':{goal:'A clearer website for an AI receptionist service.',lanes:[['Website revamp',['Existing website','Review structure + messaging'],['Revamp','AI-assisted coding'],['Service presentation','Clearer visuals and content'],['Live website','Explore the finished experience']]],site:'https://auraassistant.com/'},
  'namaos-details':{goal:'Turn a short HTML reference into a complete service website.',lanes:[['Website build',['Supplied reference','Theme, logo + key points'],['Page structure','Expand the service story'],['Supporting visuals','Build with AI-assisted coding'],['Live website','Explore the finished experience']]],site:'https://www.namaos.com'}
 };
+
+const maps={
+'workflow-details':{nodes:[['Website widget AI','Books an appointment.','widget-agent-settings.png'],['Widget source tracking','Records the booking source.','widget-source-workflow.png'],['Shared reminders','Both sources join this reminder sequence.','shared-ai-reminders.png'],['Social DM AI','Books through a private conversation.','social-agent-settings.png'],['Social source tracking','Records the social booking source.','social-source-workflow.png']],edges:[[0,1,'Booking'],[1,2,'Join'],[3,4,'Booking'],[4,2,'Join']]},
+'social-ai-details':{nodes:[['Facebook workflow','Comment → AI analysis → conditional public reply and DM.','social-facebook-workflow.png'],['Instagram workflow','The same conditional journey on Instagram.','social-instagram-workflow.png'],['Smart DM agent','Knowledge-based conversation, booking and human handover.','social-smart-dm-agent.png']],edges:[[0,2,'If DM qualifies'],[1,2,'If DM qualifies']]},
+'voice-ai-details':{nodes:[['Tag-to-call workflow','A contact tag starts the outbound call.','voice-outbound-workflow.png'],['Voice AI agent','Handles the conversation with knowledge and booking actions.','voice-outbound-agent.png'],['Deployment','Connected deployment; phone number obscured.','voice-deployment-private.png']],edges:[[0,1,'Calls through'],[1,2,'Deployed via']]},
+'discovery-email-details':{nodes:[['Initial discovery email','Manual enrollment → drip → email → campaign field.','discovery-initial.png'],['Link-click tracking','Checks campaign state before recording engagement.','discovery-clicked.png'],['Reply tracking','Records a reply unless already marked Demo Booked.','discovery-replied.png'],['Demo-booking tracking','Waits, checks campaign state and updates matching contacts.','discovery-booked.png']],edges:[[0,1,'Link clicked'],[0,2,'Customer replied'],[1,3,'Appointment booked'],[2,3,'Appointment booked']]},
+'lifecycle-details':{nodes:[['Demo nurture','Tracked emails identify booking interest.','aura-lifecycle-nurture.png'],['Booking confirmed','Updates the opportunity and sends reminders.','aura-lifecycle-confirmed.png'],['Demo attended','Records attendance and starts follow-up.','aura-lifecycle-showed.png'],['No-show recovery','Recovery emails check for a new booking.','aura-lifecycle-no-show.png'],['Cancellation recovery','Reschedules exit; other cancellations enter recovery.','aura-lifecycle-cancelled.png'],['Demo Conversion pipeline','Lifecycle updates are tracked here. Sample stage distribution.','demo-pipeline-example.png']],edges:[[0,1,'Booked'],[1,2,'Attended'],[1,3,'No-show'],[1,4,'Cancelled'],[2,5,'Track'],[3,5,'Track'],[4,5,'Track']]},
+'payments-details':{nodes:[['Purchase processing','Offer-specific tag checks → email → team notification.','purchase-frontdesk-annual.png'],['Subscription lifecycle','Billing events update contact status tags.','subscription-lifecycle-full.png'],['Opportunity routing','Status tags trigger opportunity updates or creation.','subscription-pipeline-full.png']],edges:[[1,2,'Status tags']],extra:['purchase-receptionist-monthly.png','purchase-frontdesk-monthly.png','purchase-360-monthly.png','purchase-360-annual.png']}
+};
 const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e};
 for(const [id,c] of Object.entries(configs)){
  const panel=document.getElementById(id);if(!panel)continue;
- const details=el('details','board-evidence');details.append(el('summary','','Open editor captures & detailed notes'));
- while(panel.firstChild)details.append(panel.firstChild);
+ panel.replaceChildren();
  const board=el('section','visual-board');board.setAttribute('aria-label','Visual project breakdown');
- const intro=el('div','board-intro');intro.append(el('span','board-kicker','AT A GLANCE'),el('h3','',c.goal),el('p','','Follow the arrows. Select a capture to inspect the actual editor.'));board.append(intro);
- for(const [label,...nodes] of c.lanes){
-  const lane=el('div','board-lane');lane.append(el('h4','',label));const flow=el('ol','board-flow');
-  nodes.forEach((n,i)=>{const node=el('li','board-node');node.append(el('span','node-order',String(i+1).padStart(2,'0')),el('h5','',n[0]),el('p','',n[1]));
-   if(n[2]){const a=el('a','flow-image board-capture');a.href='assets/'+n[2];const img=el('img');img.setAttribute('data-src',a.href);img.alt=n[0]+' — GHL capture';img.loading='lazy';a.append(img,el('span','','Inspect editor ↗'));node.append(a)}
-   flow.append(node);
-  });lane.append(flow);board.append(lane);
- }
+ const intro=el('div','board-intro');intro.append(el('span','board-kicker','CONNECTED WORKFLOWS'),el('h3','',c.goal),el('p','','Select any image to zoom into the original interface.'));board.append(intro);
+ const m=maps[id];
+ if(m){
+ const graph=el('div','image-graph');graph.dataset.map=id;
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('graph-lines');svg.setAttribute('aria-hidden','true');graph.append(svg);
+ m.nodes.forEach((n,i)=>{const node=el('figure','image-node');node.dataset.node=i;const a=el('a','flow-image image-node-capture'+(n[2].includes('private')?' private-strip':''));a.href='assets/'+n[2];const img=el('img');img.dataset.src=a.href;img.alt=n[0];a.append(img);const cap=el('figcaption');cap.append(el('h4','',n[0]),el('p','',n[1]));node.append(a,cap);graph.append(node)});
+ board.append(graph);
+ const routes=el('div','graph-routes');m.edges.forEach(([a,b,label])=>routes.append(el('span','',m.nodes[a][0]+' → '+label+' → '+m.nodes[b][0])));routes.classList.add('sr-only');board.append(routes);
+ function draw(){if(!graph.clientWidth||panel.inert)return;const r=graph.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${r.width} ${r.height}`);svg.replaceChildren();const ns=svg.namespaceURI;const defs=document.createElementNS(ns,'defs');const marker=document.createElementNS(ns,'marker');marker.id='arrow-'+id;marker.setAttribute('viewBox','0 0 10 10');marker.setAttribute('refX','9');marker.setAttribute('refY','5');marker.setAttribute('markerWidth','7');marker.setAttribute('markerHeight','7');marker.setAttribute('orient','auto-start-reverse');const tip=document.createElementNS(ns,'path');tip.setAttribute('d','M 0 0 L 10 5 L 0 10 z');tip.setAttribute('fill','#4673c6');marker.append(tip);defs.append(marker);svg.append(defs);
+ m.edges.forEach(([a,b,label],i)=>{const x=graph.querySelector(`[data-node="${a}"]`).getBoundingClientRect(),y=graph.querySelector(`[data-node="${b}"]`).getBoundingClientRect();const same=Math.abs(x.top-y.top)<20;let sx,sy,tx,ty,d,lx,ly;
+if(same&&y.left>x.right&&y.left-x.right<80){sx=x.right-r.left;sy=x.top-r.top+95;tx=y.left-r.left;ty=y.top-r.top+95;d=`M${sx},${sy} L${tx},${ty}`;lx=(sx+tx)/2;ly=sy-10;}
+else if(same){sx=x.left-r.left+x.width/2;sy=x.bottom-r.top;tx=y.left-r.left+y.width/2;ty=y.bottom-r.top;const mid=sy+30;d=`M${sx},${sy} V${mid} H${tx} V${ty}`;lx=(sx+tx)/2;ly=mid-6;}
+else{const down=y.top>x.top;sx=x.left-r.left+x.width/2;sy=(down?x.bottom:x.top)-r.top;tx=y.left-r.left+y.width/2;ty=(down?y.top:y.bottom)-r.top;const gap=Math.abs(ty-sy);if(gap<110){const mid=(sy+ty)/2;d=`M${sx},${sy} V${mid} H${tx} V${ty}`;lx=(sx+tx)/2+15;ly=mid-6;}else{const side=5+i*2;const mid=sy+(down?20:-20);d=`M${sx},${sy} V${mid} H${side} V${ty+(down?-18:18)} H${tx} V${ty}`;lx=sx;ly=mid-5;}}
+const path=document.createElementNS(ns,'path');path.setAttribute('d',d);path.setAttribute('fill','none');path.setAttribute('stroke','#4673c6');path.setAttribute('stroke-width','1.6');path.setAttribute('marker-end',`url(#arrow-${id})`);svg.append(path);const text=document.createElementNS(ns,'text');text.setAttribute('x',r.width<700?tx:lx);text.setAttribute('y',r.width<700?ty-10:ly);text.setAttribute('style','font:600 10px Arial,sans-serif;fill:#365d9f;stroke:#fafbfc;stroke-width:5px;paint-order:stroke');text.setAttribute('text-anchor','middle');text.textContent=label;svg.append(text);});}
+ new ResizeObserver(draw).observe(graph);new MutationObserver(draw).observe(panel,{attributes:true,attributeFilter:['inert']});
+ if(m.extra){const extra=el('div','related-captures');extra.append(el('h4','','Other purchase offers'));m.extra.forEach((file,i)=>{const a=el('a','flow-image');a.href='assets/'+file;const img=el('img');img.dataset.src=a.href;img.alt=['AI Receptionist monthly','AI Front Desk monthly','360 Business monthly','360 Business annual'][i];a.append(img,el('span','',img.alt));extra.append(a)});board.append(extra)}
+ }else{const video=el('video','website-board-video');video.controls=true;video.muted=true;video.playsInline=true;video.preload='metadata';video.src='assets/'+(id==='aura-details'?'aura-assistant-website-scroll.mp4':'namaos-website-scroll.mp4');board.append(video);board.append(el('p','board-note',id==='aura-details'?'Revamped the page structure, visuals and service messaging using AI-assisted coding.':'Expanded a short HTML reference into a complete service website, with supporting content and visuals.'));}
  if(c.note)board.append(el('p','board-note',c.note));
- if(c.feature){const [title,file,caption,kind]=c.feature;const f=el('figure','board-feature'+(kind?' '+kind:''));f.append(el('h4','',title));const a=el('a','flow-image');a.href='assets/'+file;const img=el('img');img.setAttribute('data-src',a.href);img.alt=caption;img.loading='lazy';a.append(img);f.append(a,el('figcaption','',caption));board.append(f)}
+ if(id==='lifecycle-details')board.append(el('p','board-note','Pipeline image: illustrative stage distribution with sample contacts, not live outcomes.'));
  if(c.site){const a=el('a','board-site','Visit live website ↗');a.href=c.site;a.target='_blank';a.rel='noopener noreferrer';board.append(a)}
- panel.append(board,details);
+ panel.append(board);
 }
 })();
