@@ -463,6 +463,58 @@ body:not(.gallery-page) #work .workflows .project-controls{margin-top:auto;paddi
 /* Larger website previews where the screen has room. */
 @media(min-width:1000px) and (min-height:800px){body:not(.gallery-page) #work .websites .project{grid-template-columns:43% minmax(0,1fr);padding:16px;column-gap:18px}body:not(.gallery-page) #work .websites .media-frame{height:138px}body:not(.gallery-page) #work .websites .project h3{font-size:1.12rem}body:not(.gallery-page) #work .websites .project-summary{font-size:.86rem}}
 body:not(.gallery-page) .gallery-home-link{padding-top:22px;padding-bottom:8px}
+
+/* Compact responsive layouts, with comfortable touch targets. */
+@media(max-width:760px){
+ body{font-size:15px;line-height:1.55}
+ .wrap{width:calc(100% - 32px)}
+ .nav-shell nav{min-height:60px;gap:10px}
+ .wordmark{font-size:.82rem;white-space:nowrap}
+ .nav-links{gap:10px!important;font-size:.8rem}
+ .nav-links a[href="#work"],.nav-links a[href="index.html#work"],.nav-links a[href="#tools"],.nav-links a[href="#about"]{display:none!important}
+ nav .nav-contact{min-height:44px;padding:9px 13px;font-size:.8rem}
+ section,body:not(.gallery-page) main>section{padding-block:30px;scroll-margin-top:64px}
+ body:not(.gallery-page) main>.hero{padding-block:28px}
+ .hero-layout{gap:12px}
+ h1{font-size:clamp(2rem,8vw,3.2rem);line-height:1.06;letter-spacing:-.045em;margin-bottom:18px}
+ .hero-copy{font-size:.94rem;line-height:1.6;margin-bottom:20px}
+ .hero-portrait{max-width:235px;margin:0 auto}
+ h2,body:not(.gallery-page) #work h2{font-size:1.8rem;line-height:1.12}
+ .section-head{gap:10px;margin-bottom:20px}
+ .section-intro,.compact-section p{font-size:.9rem;line-height:1.6}
+ .actions{gap:9px}.actions .button,.gallery-cta{min-height:44px;font-size:.85rem;padding:11px 16px}
+ .project-grid,body:not(.gallery-page) #work .project-grid{gap:14px}
+ .project,.gallery-page #work .project{padding:13px;border-radius:14px;min-width:0}
+ .project h3,body:not(.gallery-page) #work .project h3{font-size:1.08rem;line-height:1.3;margin-bottom:8px}
+ .project-summary,body:not(.gallery-page) #work .project-summary{font-size:.88rem;line-height:1.55;margin-bottom:8px}
+ .project-meta{font-size:.7rem;gap:10px;min-height:0;margin-bottom:10px}
+ .project-meta span{min-width:0}
+ .project-controls{gap:8px 14px;flex-wrap:wrap}
+ .text-button{min-height:44px;display:inline-flex;align-items:center;font-size:.8rem}
+ .collection-grid .media-frame{aspect-ratio:16/9;max-height:190px}
+ body:not(.gallery-page) #work .workflows .media-frame{height:150px;aspect-ratio:auto}
+ body:not(.gallery-page) #work .websites .media-frame{aspect-ratio:16/9;max-height:190px}
+ .gallery-intro{padding:30px 0 16px}.gallery-intro h1{font-size:2.4rem;margin:10px 0 14px}
+ .gallery-intro p{font-size:.94rem;line-height:1.6}.eyebrow{font-size:.68rem;letter-spacing:.08em}
+ .gallery-page #work{padding-top:20px}.gallery-jump{padding:22px 0 28px}.gallery-jump a{font-size:1.2rem}.gallery-jump p{font-size:.85rem}
+ .collection-group{margin-top:24px}.collection-group+.collection-group{margin-top:30px}.collection-group>h3{font-size:1.5rem;padding-bottom:10px}
+ .collection-group-intro{font-size:.88rem;margin-bottom:16px}.gallery-filter{gap:8px;margin:18px 0 12px}.gallery-filter button{min-height:44px;font-size:.82rem;padding:8px 13px}.collection-count{margin-bottom:16px}
+ .gallery-page #work .project{grid-template-columns:80px minmax(0,1fr);gap:0 12px}
+ .gallery-page #work .media-frame{grid-column:1;grid-row:1/4;width:80px;margin:0;aspect-ratio:1}
+ .gallery-page #work .project-meta{grid-column:2;grid-row:1;font-size:.65rem;flex-wrap:wrap;gap:2px 8px}
+ .gallery-page #work .project h3{grid-column:2;grid-row:2;font-size:1rem}
+ .gallery-page #work .project-summary{grid-column:1/-1;grid-row:4;font-size:.85rem;margin-top:10px}
+ .gallery-page #work .project-controls{grid-column:1/-1;grid-row:5;flex-direction:row;flex-wrap:wrap;gap:6px 14px;margin-top:4px}
+ #tools .section-head{margin-bottom:20px}.tool-group{padding:20px 0;gap:14px}.tool-collection{gap:16px}.tool-item{padding-bottom:4px}.tool-item h4{font-size:.92rem}.tool-item p{font-size:.85rem;line-height:1.55}
+ .contact p{font-size:.9rem}.contact-email{font-size:clamp(.85rem,4vw,1.1rem);overflow-wrap:anywhere;gap:8px}.contact-email svg{flex-shrink:0}
+ .breakdown-dialog{width:calc(100vw - 16px);max-height:92dvh}.dialog-heading{padding:12px}.dialog-heading h2{font-size:1rem;line-height:1.3}.dialog-x{min-width:44px;min-height:44px}
+ .breakdown-body{padding:4px}.payments-breakdown,.lifecycle-breakdown,.compact-lifecycle,.source-breakdown{padding:14px}
+ .payments-breakdown>h3{font-size:1.08rem;line-height:1.35}.payments-breakdown p,.flow-figure p{font-size:.85rem;line-height:1.6}.flow-figure{padding:16px 0}
+ .new-breakdown .flow-image{margin:14px 0 20px}.payments-breakdown>.flow-image img{height:170px}.payment-grid .flow-image img{height:160px}
+ .image-dialog{width:calc(100vw - 12px)}.image-toolbar{gap:8px}.image-toolbar h2{font-size:.85rem}.zoom-controls button{min-width:40px;min-height:44px}.image-help{font-size:.72rem}
+ footer{font-size:.78rem;padding:24px 0}
+}
+@media(max-width:360px){.wrap{width:calc(100% - 24px)}.wordmark{font-size:.75rem}.nav-links{gap:7px!important}nav .nav-contact{padding-inline:10px}.nav-contact svg{display:none}.project-meta{flex-wrap:wrap}.gallery-page #work .project{grid-template-columns:64px minmax(0,1fr)}.gallery-page #work .media-frame{width:64px}}
 </style>
 </head>
 <body>
