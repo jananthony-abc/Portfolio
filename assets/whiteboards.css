@@ -27,3 +27,12 @@
 @media(max-width:760px){.image-graph{grid-template-columns:1fr;gap:48px;padding:6px 18px}.image-node-capture img{height:155px}.image-node h4{font-size:.9rem}.image-node p{font-size:.77rem}.graph-routes{margin:4px 18px 20px;font-size:.69rem}.related-captures{grid-template-columns:1fr 1fr;margin:18px 0}.related-captures img{height:80px}.image-node-capture.private-strip{height:100px}}
 
 .graph-lines text{font:600 10px Arial,sans-serif;fill:#365d9f;stroke:#fafbfc;stroke-width:5px;paint-order:stroke}.graph-routes.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0;padding:0}
+
+/* Keep every label in normal document flow, clear of screenshot and arrow layers. */
+.image-node{align-self:stretch;position:relative;z-index:1;background:#fafbfc;display:flex;flex-direction:column}
+.image-node-capture{flex-shrink:0;position:relative;overflow:hidden}
+.image-node figcaption{position:relative;background:#fafbfc;padding:14px 8px 10px;flex:1}
+.image-node h4{font-size:1.02rem;line-height:1.4;color:#172033}.image-node p{font-size:.9rem;line-height:1.55;color:#40516d}
+.node-routes{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.node-routes span{display:inline-block;background:#e9effb;color:#234779;border:1px solid #cbd8f0;border-radius:5px;padding:5px 8px;font-size:.78rem;font-weight:600;line-height:1.4}
+.image-graph{gap:86px 48px;padding-bottom:64px}.board-note{font-size:.88rem;color:#40516d}.workflow-disclosure{color:#40516d!important;line-height:1.6!important}
+@media(max-width:760px){.image-graph{gap:55px;padding-bottom:55px}.image-node h4{font-size:.96rem}.image-node p{font-size:.86rem}.node-routes span{font-size:.75rem}.image-node figcaption{padding:12px 5px 9px}}
