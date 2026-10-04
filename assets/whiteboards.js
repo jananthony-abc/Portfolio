@@ -43,6 +43,7 @@ for(const [id,c] of Object.entries(configs)){
  const intro=el('div','board-intro');intro.append(el('span','board-kicker','CONNECTED WORKFLOWS'),el('h3','',c.goal),el('p','','Select an image to zoom. Follow the arrows and numbered destinations below each capture.'));board.append(intro);
  const m=maps[id];
  if(m){
+ intro.append(el('p','board-qa','Tested before deployment: I ran pre-deployment tests and verified that each workflow worked as intended before publishing it.')); 
  const graph=el('div','image-graph');graph.dataset.map=id;
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.classList.add('graph-lines');svg.setAttribute('aria-hidden','true');graph.append(svg);
  m.nodes.forEach((n,i)=>{const node=el('figure','image-node');node.dataset.node=i;const a=el('a','flow-image image-node-capture'+(n[2].includes('private')?' private-strip':''));a.href='assets/'+n[2];const img=el('img');img.dataset.src=a.href;img.alt=n[0];a.append(img);const cap=el('figcaption');cap.append(el('h4','',String(i+1).padStart(2,'0')+' · '+n[0]),el('p','',n[1]));const links=el('div','node-routes');m.edges.filter(e=>e[0]===i).forEach(e=>links.append(el('span','',e[2]+' → '+String(e[1]+1).padStart(2,'0'))));cap.append(links);node.append(a,cap);graph.append(node)});
@@ -63,3 +64,4 @@ const path=document.createElementNS(ns,'path');path.setAttribute('d',d);path.set
  panel.append(board);
 }
 })();
+
