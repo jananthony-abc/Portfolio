@@ -474,7 +474,7 @@ nav .nav-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 18p
 }
 @media(max-width:360px){.wrap{width:calc(100% - 24px)}.wordmark{font-size:.75rem}.nav-links{gap:7px!important}nav .nav-contact{padding-inline:10px}.nav-contact svg{display:none}.project-meta{flex-wrap:wrap}.gallery-page #work .project{grid-template-columns:64px minmax(0,1fr)}.gallery-page #work .media-frame{width:64px}}
 </style>
-<link rel="stylesheet" href="assets/whiteboards.css?v=3">
+<link rel="stylesheet" href="assets/whiteboards.css?v=4">
 </head>
 <body class="gallery-page">
   <header class="nav-shell">
@@ -599,7 +599,7 @@ nav .nav-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 18p
   <p class="image-help">Use + / − to zoom, then drag or scroll to explore. Ctrl + scroll also zooms.</p>
   <div class="image-stage" tabindex="0" aria-label="Zoomable image"><img class="preview-image" alt=""></div>
 </dialog>
-  <script src="assets/whiteboards.js?v=3"></script>
+  <script src="assets/whiteboards.js?v=4"></script>
 <script>
 const breakdown=document.getElementById('breakdown-dialog');
 const viewer=document.getElementById('image-dialog');
@@ -673,6 +673,7 @@ document.querySelectorAll('.cta-ring').forEach(svg=>{const fit=()=>{const radius
 </script>
 <script>document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll('.collection-grid [data-category]').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter;if(!card.hidden)count++});document.querySelectorAll('[data-group]').forEach(g=>{g.hidden=button.dataset.filter!=='all'&&g.dataset.group!==button.dataset.filter});document.querySelector('.collection-count').textContent=count+' project'+(count===1?'':'s')}));</script></body>
 </html>
+
 
 
 
