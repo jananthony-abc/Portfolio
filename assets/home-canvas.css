@@ -61,3 +61,17 @@ body.canvas-home #work .canvas-contact h2{font-size:clamp(44px,6.5vw,92px);line-
 @media(max-width:700px){.ambient-tile{width:34px;height:34px;border-radius:10px}.ambient-position-2 .ambient-tile{width:28px;height:28px;border-radius:8px}.ambient-position-3{display:none}}
 @media(prefers-reduced-motion:reduce){.ambient-grid,.ambient-tile{animation:none!important}.ambient-grid-offset,.ambient-position{transform:none!important;will-change:auto}.ambient-position{transition:none}.ambient-position-1{left:auto;right:3%;top:20%}.ambient-position-2{left:2%;top:auto;bottom:17%}.ambient-position-3{left:53%;top:14%}.ambient-glyph,.ambient-tile{transition:none}}
 @media print{.canvas-atmosphere{display:none}}
+
+/* One brief introduction; workflow slides keep only their navigation. */
+.canvas-keyword{color:var(--accent)}
+.tone-black .canvas-keyword{color:#fff;background:#17191c;padding:0 .1em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.canvas-work-intro{padding:30px 24px 42px;text-align:center;scroll-margin-top:90px}
+.canvas-work-intro>div{max-width:510px;margin:auto}.canvas-work-intro .canvas-eyebrow{justify-content:center;margin-bottom:12px}
+.canvas-work-intro p{font-size:16px;line-height:1.7;color:#535a65;margin:0;text-wrap:pretty}
+.canvas-enhanced .canvas-work-intro{position:absolute;inset:0;display:grid;place-items:center;z-index:3;pointer-events:none;padding:32px;visibility:hidden;will-change:opacity,filter,transform}
+.canvas-enhanced .canvas-stage.is-intro .canvas-work-bottom{visibility:hidden;pointer-events:none}
+.canvas-work-bottom{justify-content:flex-end;background:transparent!important;border-top:0;padding-block:18px}
+.canvas-controls{background:#ffffffd9;border:1px solid #0000000b;border-radius:28px;padding:5px 7px;backdrop-filter:blur(8px)}
+@media(max-width:700px){.canvas-work-bottom{align-items:flex-end;padding:10px 20px}.canvas-controls{gap:12px}.canvas-work-intro p{font-size:14px}.canvas-work-intro .canvas-eyebrow{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.canvas-work-intro{filter:none!important;transform:none!important}}
+.tone-black .canvas-keyword{margin-left:.06em}
