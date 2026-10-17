@@ -38,29 +38,26 @@ body.canvas-home #work .canvas-contact h2{font-size:clamp(44px,6.5vw,92px);line-
 }
 
 
-/* A viewport-wide atmosphere moves independently of the content track. */
-.canvas-home{background-image:none;isolation:isolate}
-.canvas-home>main{position:relative;z-index:1}
-.canvas-enhanced .canvas-track{background:transparent}
-.canvas-atmosphere{--ambient-color:#69717d;position:fixed;inset:0;z-index:0;overflow:clip;pointer-events:none;contain:strict;background:#fff}
+/* A continuously travelling background, independent of page navigation. */
+.canvas-home{background-image:none;isolation:isolate}.canvas-home>main{position:relative;z-index:1}.canvas-enhanced .canvas-track{background:transparent}
+.canvas-atmosphere{--ambient-color:#e2e5e9;--ambient-ink:#242830;position:fixed;inset:0;z-index:0;overflow:clip;pointer-events:none;contain:strict;background:#fff}
 .ambient-grid-offset{position:absolute;inset:-96px;transform:translate3d(var(--grid-x,0px),var(--grid-y,0px),0);will-change:transform}
-.ambient-grid{position:absolute;inset:-32px;background-image:linear-gradient(#0000000b 1px,transparent 1px),linear-gradient(90deg,#0000000b 1px,transparent 1px);background-size:32px 32px;animation:ambient-drift 24s linear infinite;will-change:transform}
-@keyframes ambient-drift{to{transform:translate3d(32px,32px,0)}}
-.ambient-position{position:absolute;transform:translate3d(var(--icon-x,0px),var(--icon-y,0px),0);will-change:transform}
-.ambient-position-1{top:20%;right:3%}.ambient-position-2{bottom:17%;left:2%}.ambient-position-3{top:14%;left:53%}
-.ambient-tile{width:54px;height:54px;border:1px solid currentColor;border-radius:15px;display:grid;place-items:center;color:var(--ambient-color);background:#ffffffa8;opacity:.28;animation:ambient-float 9s linear infinite alternate;transition:color .6s ease;box-shadow:0 6px 22px #00000005}
-.ambient-position-2 .ambient-tile{width:42px;height:42px;border-radius:12px;animation-delay:-4s;animation-direction:alternate-reverse}
-.ambient-position-3 .ambient-tile{width:38px;height:38px;border-radius:11px;animation-delay:-7s}
-.ambient-tile svg{width:53%;height:53%;overflow:visible}.ambient-glyph{opacity:0;transition:opacity .45s ease}
-@keyframes ambient-float{from{transform:translate3d(-9px,10px,0) rotate(-7deg)}to{transform:translate3d(12px,-15px,0) rotate(8deg)}}
-.canvas-atmosphere[data-theme="social"]{--ambient-color:#2162ed}.canvas-atmosphere[data-theme="voice"]{--ambient-color:#008555}.canvas-atmosphere[data-theme="demo"]{--ambient-color:#ad8000}.canvas-atmosphere[data-theme="payments"]{--ambient-color:#d53f40}.canvas-atmosphere[data-theme="discovery"]{--ambient-color:#17191c}
+.ambient-grid{position:absolute;inset:-800px;background-image:radial-gradient(circle at 96.5px 96.5px,#2162ed80 0 3px,transparent 3.5px),radial-gradient(circle at 416.5px 288.5px,#00855580 0 3px,transparent 3.5px),radial-gradient(circle at 672.5px 544.5px,#d53f4080 0 3px,transparent 3.5px),radial-gradient(circle at 256.5px 672.5px,#e5b62b99 0 3px,transparent 3.5px),linear-gradient(#0000000d 1px,transparent 1px),linear-gradient(90deg,#0000000d 1px,transparent 1px);background-size:768px 768px,768px 768px,768px 768px,768px 768px,32px 32px,32px 32px;animation:ambient-drift 192s linear infinite;will-change:transform}
+@keyframes ambient-drift{to{transform:translate3d(768px,768px,0)}}
+.ambient-position{position:absolute;top:0;left:0;will-change:transform;opacity:.9;transition:opacity .25s ease}
+.ambient-position.is-behind-copy{opacity:.09}
+.ambient-tile{width:54px;height:54px;border:1px solid #00000008;border-radius:15px;display:grid;place-items:center;color:var(--ambient-ink);background:var(--ambient-color);box-shadow:0 5px 18px #0000000c;animation:ambient-turn 76s linear infinite;transition:color .6s ease,background-color .6s ease}
+.ambient-position-2 .ambient-tile{width:42px;height:42px;border-radius:12px;animation-duration:91s;animation-direction:reverse;animation-delay:-17s}
+.ambient-position-3 .ambient-tile{width:38px;height:38px;border-radius:11px;animation-duration:109s;animation-delay:-38s}
+.ambient-tile svg{width:55%;height:55%;overflow:visible}.ambient-glyph{opacity:0;transition:opacity .45s ease}
+@keyframes ambient-turn{from{transform:rotate(-12deg)}to{transform:rotate(348deg)}}
+.canvas-atmosphere[data-theme="social"]{--ambient-color:#2162ed;--ambient-ink:#fff}.canvas-atmosphere[data-theme="voice"]{--ambient-color:#008555;--ambient-ink:#fff}.canvas-atmosphere[data-theme="demo"]{--ambient-color:#f2c94c;--ambient-ink:#17191c}.canvas-atmosphere[data-theme="payments"]{--ambient-color:#d53f40;--ambient-ink:#fff}.canvas-atmosphere[data-theme="discovery"]{--ambient-color:#17191c;--ambient-ink:#fff}
 .canvas-atmosphere[data-theme="neutral"] [data-glyph="neutral"]{opacity:1}
 .canvas-atmosphere[data-theme="social"] [data-glyph="social"]{opacity:1}
 .canvas-atmosphere[data-theme="voice"] [data-glyph="voice"]{opacity:1}
 .canvas-atmosphere[data-theme="demo"] [data-glyph="demo"]{opacity:1}
 .canvas-atmosphere[data-theme="payments"] [data-glyph="payments"]{opacity:1}
 .canvas-atmosphere[data-theme="discovery"] [data-glyph="discovery"]{opacity:1}
-
-@media(max-width:700px){.ambient-tile{width:34px;height:34px;border-radius:10px;opacity:.22}.ambient-position-1{right:3%;top:15%}.ambient-position-2{left:3%;bottom:19%}.ambient-position-2 .ambient-tile{width:28px;height:28px;border-radius:8px}.ambient-position-3{display:none}}
-@media(prefers-reduced-motion:reduce){.ambient-grid,.ambient-tile{animation:none!important}.ambient-grid-offset,.ambient-position{transform:none!important;will-change:auto}.ambient-glyph,.ambient-tile{transition:none}}
+@media(max-width:700px){.ambient-tile{width:34px;height:34px;border-radius:10px}.ambient-position-2 .ambient-tile{width:28px;height:28px;border-radius:8px}.ambient-position-3{display:none}}
+@media(prefers-reduced-motion:reduce){.ambient-grid,.ambient-tile{animation:none!important}.ambient-grid-offset,.ambient-position{transform:none!important;will-change:auto}.ambient-position{transition:none}.ambient-position-1{left:auto;right:3%;top:20%}.ambient-position-2{left:2%;top:auto;bottom:17%}.ambient-position-3{left:53%;top:14%}.ambient-glyph,.ambient-tile{transition:none}}
 @media print{.canvas-atmosphere{display:none}}
