@@ -1,7 +1,6 @@
 (()=>{
  const runway=document.querySelector('.canvas-runway'),stage=document.querySelector('.canvas-stage'),track=document.querySelector('.canvas-track'),slides=[...document.querySelectorAll('.canvas-slide')],contact=document.querySelector('.canvas-contact');
  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),short=matchMedia('(max-height: 620px)');
- const names=['Social AI','Voice AI','Demo lifecycle','Payments','Discovery email'];
  let width=0,height=0,start=0,step=0,active=-1,enabled=false,queued=false;
  const intro=document.querySelector('.canvas-work-intro'),introDistance=intro?190:0;
  const nav=document.querySelector('.canvas-nav');
@@ -42,6 +41,7 @@
   if(enabled){if(raw>=introDistance-40&&travelY<height*.3)theme=themes[Math.min(4,Math.round(travelX/width))];}
   else {const middle=innerHeight*.5;const visible=slides.find(s=>{const r=s.getBoundingClientRect();return r.top<=middle&&r.bottom>middle});if(visible)theme=themes[slides.indexOf(visible)];}
   if(atmosphere.dataset.theme!==theme)atmosphere.dataset.theme=theme;
+  stage.dataset.theme=theme;
   if(reduced.matches)return;
   const x=enabled?travelX:0;
   const y=enabled?Math.min(scrollY,start)+travelY:scrollY;
@@ -62,7 +62,6 @@
   track.style.transform=`translate3d(${-x}px,${-y}px,0)`;
   const i=y>height*.45?5:Math.min(4,Math.round(x/width));stage.classList.toggle('is-contact',y>height*.2);
   slides.forEach((slide,n)=>{slide.inert=n!==i||reveal<1});contact.inert=i!==5;
-  if(i!==active){active=i;document.querySelector('.canvas-current').textContent=names[Math.min(i,4)];document.querySelector('[data-direction="previous"]').disabled=i===0;document.querySelector('[data-direction="next"]').setAttribute('aria-label',i>=4?'Continue to contact':'Next workflow');}
  }
  function measure(){
   enabled=!reduced.matches&&!short.matches;document.body.classList.toggle('canvas-enhanced',enabled);
@@ -75,7 +74,6 @@
   if(enabled)scrollTo({top:start+(showIntro?55:introDistance+(i===5?4*step+height:i*step)),behavior:reduced.matches?'instant':'smooth'});
   else(showIntro?intro:i===5?contact:slides[i]).scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
  }
- document.querySelectorAll('[data-direction]').forEach(b=>b.addEventListener('click',()=>move(Math.max(0,Math.min(5,active+(b.dataset.direction==='next'?1:-1))))));
  document.querySelectorAll('a[href="#work"],a[href="#contact"],a[href="#top"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(a.hash==='#top')scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'});else move(a.hash==='#contact'?5:0,a.hash==='#work');}));
  addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});addEventListener('resize',measure);reduced.addEventListener('change',measure);short.addEventListener('change',measure);measure();document.fonts.ready.then(measure);
  if(location.hash==='#contact')move(5);else if(location.hash==='#work')move(0,true);
