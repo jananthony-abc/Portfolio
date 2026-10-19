@@ -654,7 +654,7 @@ document.querySelectorAll('video').forEach(video=>{new IntersectionObserver(([en
 // Match the animated border radius to the actual pill height.
 document.querySelectorAll('.cta-ring').forEach(svg=>{const fit=()=>{const radius=(svg.clientHeight-1)/2;svg.querySelectorAll('rect').forEach(rect=>{rect.setAttribute('rx',radius);rect.setAttribute('ry',radius)})};new ResizeObserver(fit).observe(svg);fit()});
 </script>
-<script src="assets/home-journey-v7.js"></script>
+<script src="assets/home-journey-v7.js?v=2"></script>
 </body>
 </html>
 
