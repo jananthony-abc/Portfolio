@@ -36,7 +36,9 @@
  drawer.addEventListener('cancel',event=>{event.preventDefault();closeDrawer();});
  drawer.addEventListener('close',()=>{
   clearTimeout(drawerTimer);drawer.classList.remove('is-closing');document.body.classList.remove('home-menu-open');menuToggle.setAttribute('aria-expanded','false');
-  menuToggle.focus({preventScroll:true});const after=drawerAfterClose;drawerAfterClose=null;after?.();
+  menuToggle.focus({preventScroll:true});const after=drawerAfterClose;drawerAfterClose=null;
+  // Let the dialog's scroll lock and focus restoration settle before navigating.
+  if(after)requestAnimationFrame(()=>requestAnimationFrame(after));
  });
  drawer.addEventListener('click',event=>{if(event.target===drawer){const r=drawer.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeDrawer();}});
  categoryToggle.addEventListener('click',()=>{categories.hidden=!categories.hidden;categoryToggle.setAttribute('aria-expanded',String(!categories.hidden));});
