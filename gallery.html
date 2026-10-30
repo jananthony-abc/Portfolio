@@ -477,7 +477,7 @@ nav .nav-contact{display:inline-flex;align-items:center;gap:8px;padding:11px 18p
 
 <link rel="stylesheet" href="assets/gallery-studio.css?v=1">
 
-<link rel="stylesheet" href="assets/gallery-compact-v1.css"><link rel="stylesheet" href="assets/project-breakdowns-v1.css">
+<link rel="stylesheet" href="assets/gallery-compact-v1.css"><link rel="stylesheet" href="assets/gallery-card-previews-v1.css"><link rel="stylesheet" href="assets/project-breakdowns-v1.css">
 </head><body class="gallery-studio" data-tone="blue">
 <a class="g-skip" href="#library">Skip to projects</a>
 <div class="g-atmosphere" aria-hidden="true"><div class="g-grid"></div><span class="g-float float-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="15" y="15" width="6" height="6" rx="1.5"/><path d="M6 9v9h9M9 6h9v9"/></svg></span><span class="g-float float-b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span></div>
@@ -582,7 +582,8 @@ document.querySelectorAll('.project-toggle').forEach(button=>{
     returnSlot=document.createComment('breakdown position');
     activePanel.before(returnSlot);body.append(activePanel);activePanel.inert=false;
     activePanel.querySelectorAll('img[data-src]').forEach(img=>{img.src=img.dataset.src;img.removeAttribute('data-src')});
-    document.getElementById('breakdown-title').textContent=button.closest('article').querySelector('h3').textContent;
+    const projectHeading=button.closest('article').querySelector('h3');
+    document.getElementById('breakdown-title').textContent=projectHeading.title||projectHeading.textContent;
     button.setAttribute('aria-expanded','true');breakdown.showModal();breakdown.scrollTop=0;syncLock();
   });
 });
@@ -631,4 +632,4 @@ window.addEventListener('resize',()=>{if(viewer.open)fit()});
 // Match the animated border radius to the actual pill height.
 document.querySelectorAll('.cta-ring').forEach(svg=>{const fit=()=>{const radius=(svg.clientHeight-1)/2;svg.querySelectorAll('rect').forEach(rect=>{rect.setAttribute('rx',radius);rect.setAttribute('ry',radius)})};new ResizeObserver(fit).observe(svg);fit()});
 </script>
-<script src="assets/gallery-studio-v2.js"></script><noscript><style>.g-view[hidden]{display:block!important}.g-subnav[hidden]{display:block!important}.g-tools{display:none}</style></noscript></body></html>
+<script src="assets/gallery-studio-v2.js"></script><script src="assets/gallery-card-previews-v1.js"></script><noscript><style>.g-view[hidden]{display:block!important}.g-subnav[hidden]{display:block!important}.g-tools{display:none}</style></noscript></body></html>
