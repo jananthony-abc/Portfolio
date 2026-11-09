@@ -62,8 +62,8 @@
   });
   motionFrame=requestAnimationFrame(floatFrame);
  }
- function syncFloatMotion(){cancelAnimationFrame(motionFrame);lastFrame=0;if(!reduced.matches&&!document.hidden)motionFrame=requestAnimationFrame(floatFrame);}
- reduced.addEventListener('change',syncFloatMotion);document.addEventListener('visibilitychange',syncFloatMotion);
+ function syncFloatMotion(){cancelAnimationFrame(motionFrame);lastFrame=0;if(!reduced.matches&&!document.hidden&&!document.documentElement.classList.contains('pf-background-paused'))motionFrame=requestAnimationFrame(floatFrame);}
+ addEventListener('portfolio:motion',syncFloatMotion);reduced.addEventListener('change',syncFloatMotion);document.addEventListener('visibilitychange',syncFloatMotion);
  addEventListener('resize',()=>{floats.forEach((f,i)=>{f.x=innerWidth*[.92,.28,.58][i];f.y=innerHeight*[.23,.82,.18][i]});lastRead=0;});
  syncFloatMotion();
 

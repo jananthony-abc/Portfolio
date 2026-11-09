@@ -26,9 +26,9 @@
   // Replacing the control removes its former direct-to-modal click listener.
   const toggle=original.cloneNode(true);toggle.classList.remove('g-image-preview');toggle.removeAttribute('aria-haspopup');toggle.removeAttribute('data-image');toggle.removeAttribute('data-image-alt');toggle.setAttribute('aria-controls',preview.id);toggle.setAttribute('aria-expanded','false');original.replaceWith(toggle);
   const label=document.createElement('span');label.textContent='Preview';toggle.replaceChildren(original.querySelector('svg').cloneNode(true),label);
-  let active=false,ready=false,wanted=false;
+  let active=false,ready=false,wanted=false,hoverTimer;
   function show(value){
-   wanted=value;active=value&&ready;
+   clearTimeout(hoverTimer);wanted=value;active=value&&ready;
    if(active)states.forEach(other=>{if(other.card!==card)other.show(false);});
    card.classList.toggle('is-previewing',active);toggle.setAttribute('aria-expanded',String(active));toggle.setAttribute('aria-label',(active?'Show summary: ':'Preview overview: ')+fullTitle);label.textContent=active?'Summary':'Preview';preview.inert=!active;preview.setAttribute('aria-hidden',String(!active));
   }
@@ -36,9 +36,9 @@
   img.addEventListener('error',()=>{wanted=false;show(false);toggle.disabled=true;label.textContent='Preview unavailable';});
   if(img.complete&&img.naturalWidth)ready=true;
   toggle.addEventListener('click',()=>show(!active));
-  card.addEventListener('pointerenter',e=>{if(fine.matches&&e.pointerType!=='touch')show(true);});
-  card.addEventListener('pointerleave',()=>{if(fine.matches&&!card.contains(document.activeElement))show(false);});
-  toggle.addEventListener('focus',()=>{if(toggle.matches(':focus-visible'))show(true);});
+  card.addEventListener('pointerenter',e=>{if(fine.matches&&e.pointerType!=='touch')hoverTimer=setTimeout(()=>show(true),360);});
+  card.addEventListener('pointerleave',()=>{clearTimeout(hoverTimer);if(fine.matches&&!card.contains(document.activeElement))show(false);});
+  // Keyboard focus keeps the summary readable; Enter explicitly opens its preview.
   card.addEventListener('focusout',()=>queueMicrotask(()=>{if(!card.contains(document.activeElement)&&!card.matches(':hover'))show(false);}));
   card.addEventListener('keydown',e=>{if(e.key==='Escape'&&active){e.preventDefault();show(false);toggle.focus({preventScroll:true});show(false);}});
   preview.addEventListener('click',()=>openImage(img.src,img.alt,toggle));
